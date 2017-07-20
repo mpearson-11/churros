@@ -1,0 +1,6 @@
+<div class="row">
+<%= for _team <- @teams do %>
+  <%= render(Churros.UserView, "_team.html", team: _team, conn: @conn) %>
+  <hr />
+<%= end %>
+</div>

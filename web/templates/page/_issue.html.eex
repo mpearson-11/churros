@@ -1,0 +1,8 @@
+<div class="col-1 mt-4">
+  <%= render Churros.PageView, "user.html", user: @issue["assignee"] %>
+</div>
+<div class="col-2 mt-4">
+  <h6><%= @issue["title"] %><small class="text-muted">: #<%= @issue["number"] %></small></h6>
+  <a href='<%= @issue["html_url"] %>'><%= @issue["html_url"] %></a>
+</div>
+

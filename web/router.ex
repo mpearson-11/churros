@@ -16,7 +16,18 @@ defmodule Churros.Router do
   scope "/", Churros do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/board", PageController, :scrum_board
+  end
+
+  scope "/org", Churros do
+    pipe_through :browser # Use the default browser stack
+
+    get "/repos/:name", UserController, :org_repos
+    get "/:name", UserController, :org
+    get "/members/:name", UserController, :org_members
+    get "/members/team/:id", UserController, :org_team_members
+    get "/team/:id", UserController, :org_team
+    get "/teams/:name", UserController, :org_teams
   end
 
   scope "/github", Churros do

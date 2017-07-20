@@ -1,0 +1,1 @@
+<img height="150px" src='<%= @user["avatar_url"] %>' />

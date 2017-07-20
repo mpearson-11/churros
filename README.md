@@ -17,3 +17,9 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+To Run, first set your enivornment:
+
+`CHURROS_TOKEN=` (Private GITHUB AUTH TOKEN!!!)
+`CHURROS_TEAM_ID=` (GITHUB Team ID)
+`CHURROS_TEAM_NAME=` (ORGANISATION Team Name)

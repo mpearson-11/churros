@@ -1,0 +1,4 @@
+<div class="col-3 mt-2 mb-2">
+  <img height="325px" src='<%= @user["avatar_url"] %>' />
+  <a href='<%= user_path(@conn, :user, @user["login"]) %>'><h5 class="text-center mt-2 mb-2"><%= @user["login"] %></h5>
+</div>
