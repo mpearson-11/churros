@@ -1,0 +1,5 @@
+<%= for label <- @issue["labels"] do %>
+  <div style='background-color:#<%= label["color"] %>;color: white; padding-left:5px;'>
+    <%= label["name"] %>
+  </div>
+<%= end %>
