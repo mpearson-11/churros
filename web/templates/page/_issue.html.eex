@@ -1,8 +1,12 @@
-<div class="col-1 mt-4">
-  <%= render Churros.PageView, "user.html", user: @issue["assignee"] %>
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" height="300px" src='<%= @issue["assignee"]["avatar_url"] %>' />
+  <div class="card-block">
+    <h5><%= @issue["title"] %><small class="text-muted">: #<%= @issue["number"] %></small></h5>
+  </div>
+  <div class="card-footer">
+      <a href='<%= @issue["html_url"] %>'><%= @issue["html_url"] %></a>
+  </div>
 </div>
-<div class="col-2 mt-4">
-  <h6><%= @issue["title"] %><small class="text-muted">: #<%= @issue["number"] %></small></h6>
-  <a href='<%= @issue["html_url"] %>'><%= @issue["html_url"] %></a>
-</div>
+
+
 

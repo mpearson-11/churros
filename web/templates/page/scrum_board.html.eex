@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-12 mt-2">
       <div class="card">
-        <h3 class="card-header"><%= @team["name"] %></h3>
+        <h2 class="card-header"><%= @team["name"] %></h2>
         <div class="card-block">
-          <p class="card-text"><%= @team["description"] %></p>
+          <h4 class="card-text"><%= @team["description"] %></h4>
         </div>
         <div class="card-footer text-muted">
           <%= @team["members_count"] %> Members
@@ -13,8 +13,12 @@
     </div>
   </div>
   <div class="row">
-    <%= for _issue <- @issues do %>
-      <%= render(Churros.PageView, "_issue.html", issue: _issue, conn: @conn) %>
-    <%= end %>
+    <div class="col-12 mt-2">
+      <div class="card-group">
+      <%= for _issue <- @issues do %>
+        <%= render(Churros.PageView, "_issue.html", issue: _issue, conn: @conn) %>
+      <%= end %>
+      </div>
+    </div>
   </div>
 </div>

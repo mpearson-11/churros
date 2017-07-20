@@ -12,7 +12,7 @@
           <div class="card">
             <span class="card-header"><%= @issue["user"]["login"] %></span>
             <div class="card-block">
-              <p class="card-text"><%= @issue["body"] %>.</p>
+              <p class="card-text"><%= raw(@issue["body"]) %></p>
             </div>
           </div>
         </div>

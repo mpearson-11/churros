@@ -17,7 +17,17 @@ defmodule Churros.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Churros, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :tentacat, :httpotion]]
+     applications: [
+       :phoenix,
+       :phoenix_pubsub,
+       :phoenix_html,
+       :cowboy,
+       :logger,
+       :gettext,
+       :tentacat,
+       :httpotion,
+       :earmark
+      ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,6 +46,7 @@ defmodule Churros.Mixfile do
      {:cowboy, "~> 1.0"},
      {:tentacat, "~> 0.5"},
      {:json, "~> 1.0"},
-     {:httpotion, "~> 3.0.2"}]
+     {:httpotion, "~> 3.0.2"},
+     {:earmark, "~> 1.1"}]
   end
 end
