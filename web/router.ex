@@ -16,6 +16,7 @@ defmodule Churros.Router do
   scope "/team", Churros do
     pipe_through :browser # Use the default browser stack
     get "/board", TeamController, :index
+    get "/issue-events/:id", TeamController, :issue_events
   end
   scope "/org", Churros do
     pipe_through :browser # Use the default browser stack

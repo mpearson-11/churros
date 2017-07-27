@@ -15,6 +15,9 @@ defmodule Churros.TeamController do
   defp team(:id) do
     Application.get_env(:churros, :team_id)
   end
+  defp team(:org) do
+    Application.get_env(:churros, :organisation)
+  end
   
   def filter_issues(issues) do
     Enum.filter(issues, fn(i) -> 
@@ -22,14 +25,21 @@ defmodule Churros.TeamController do
     end)
   end
 
+  defp issue_events(id) do
+    name = team(:name)
+    organisation = team(:org)
+    GitHub.issue_events(organisation, name, id, @client)
+  end
+
   def index(conn, _params) do
     id = team(:id)
     name = team(:name)
-
+    organisation = team(:org)
+  
     _team = GitHub.organisation_team(id, @client)
-    _issues = filter_issues(GitHub.issues_open("sky-uk", name, @client))
+    
+    _issues = filter_issues(GitHub.issues_open(organisation, name, @client))
 
-    IO.inspect(_issues)
     render conn, "index.html", team: _team, issues: _issues
   end
 end

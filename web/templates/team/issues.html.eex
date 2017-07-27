@@ -1,4 +1,4 @@
-<div class="card-columns">
+<div class="card-group">
   <%= for issue <- @issues do %>
     <%= if Map.has_key?(issue, "assignees") do %>
         <%= render "issue.html", issue: issue, conn: @conn %>

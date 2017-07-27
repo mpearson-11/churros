@@ -29,6 +29,10 @@ defmodule Churros.GithubController do
   def issues_open(owner, name, client) do
     Tentacat.Issues.filter(owner, name, %{"status" => "open", "filter" => "assigned" }, client)
   end
+  def issue_events(owner, name, client) do
+    Tentacat.Issues.Events.list_all(owner, name, client)
+  end
+
   def repo(owner, name, client) do
     Tentacat.Repositories.repo_get(owner, name, client)
   end
