@@ -1,8 +1,0 @@
-<div class="card-group">
-  <div class="card" style="width: 20rem;">
-    <img class="card-img-top" height="300px" src='<%= @user["avatar_url"] %>' />
-    <div class="card-footer">
-        <a class="text-center" href='<%= user_path(@conn, :user, @user["login"]) %>'><h5 class="text-center mt-2 mb-2"><%= @user["login"] %></h5>
-    </div>
-  </div>
-</div>

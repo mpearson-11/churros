@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-block">
+    <h3 class="card-title"><%= @team["name"] %></h3>
+    <%= if Map.has_key?(@team, "description") do %>
+      <p class="card-text"><%= @team["description"] %></p>
+    <%= end %>
+    <a class="btn btn-secondary btn-lg btn-block" href='<%= org_path(@conn, :org_team, @team["id"]) %>'>View Team</a>
+  </div>
+</div>

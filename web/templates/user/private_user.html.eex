@@ -1,7 +1,0 @@
-<%= Enum.map(Map.keys(@user), fn(x) -> %>
-  <% if x == "avatar_url" do %>
-    <img src="<%= @user[x] %>" />
-  <% else %>
-    <p><%= x %>: <%= @user[x] %></p>
-  <% end %>
-<% end) %>

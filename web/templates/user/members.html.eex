@@ -1,5 +1,0 @@
-<div class="row mt-3">
-  <%= for _user <- @users do %>
-    <%= render(Churros.UserView, "member.html", user: _user, conn: @conn) %>
-  <% end %>
-</div>

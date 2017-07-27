@@ -1,4 +1,0 @@
-<%= for assignee <- @issue["assignees"] do %>
-  <img height="20px" src='<%= assignee["avatar_url"] %>' title='<%= assignee["login"] %>' />
-  <span><%= assignee["login"] %></span>
-<%= end %>

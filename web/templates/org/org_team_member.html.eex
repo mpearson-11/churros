@@ -1,0 +1,8 @@
+<div class="card">
+  <img class="card-img-top" src='<%= @member["avatar_url"] %>'>
+  <div class="card-block">
+    <h4 class="card-title"><%= @member["login"] %></h4>
+    <a href'<%= @member["html_url"] %>' class="btn btn-secondary btn-lg btn-block">Github User</a>
+  </div>
+</div>
+

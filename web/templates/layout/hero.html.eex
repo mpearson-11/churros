@@ -1,0 +1,10 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container-fluid">
+    <h2 class="display-4">Team: <%= @team["name"] %></h2>
+    <%= if Map.has_key?(@team, "description") do %>
+      <p class="lead">
+        <%= @team["description"] %>
+      </p>
+    <%= end %>
+  </div>
+</div>

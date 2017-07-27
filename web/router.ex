@@ -13,30 +13,14 @@ defmodule Churros.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Churros do
+  scope "/team", Churros do
     pipe_through :browser # Use the default browser stack
-
-    get "/board", PageController, :scrum_board
+    get "/board", TeamController, :index
   end
-
   scope "/org", Churros do
     pipe_through :browser # Use the default browser stack
-
-    get "/repos/:name", UserController, :org_repos
-    get "/:name", UserController, :org
-    get "/members/:name", UserController, :org_members
-    get "/members/team/:id", UserController, :org_team_members
-    get "/team/:id", UserController, :org_team
-    get "/teams/:name", UserController, :org_teams
-  end
-
-  scope "/github", Churros do
-    pipe_through :browser # Use the default browser stack
-
-    get "/issues/:owner/:name", UserController, :issues
-    get "/repo/:owner/:name", UserController, :repo
-    # get "/private/:user/:password", UserController, :user
-    get "/user/:name", UserController, :user
+    get "/team/:id", OrgController, :org_team
+    get "/teams/:name", OrgController, :org_teams
   end
 
   # Other scopes may use custom stacks.

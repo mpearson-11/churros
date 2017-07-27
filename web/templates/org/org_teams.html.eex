@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-10 col-push-1 offset-1 mt-2">
+    <%= for org_team <- @teams do %>
+      <%= render "org_team.html", team: org_team, conn: @conn %>
+      <hr />
+    <%= end %>
+  </div>
+</div>
