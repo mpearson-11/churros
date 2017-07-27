@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <p class="h5"><%= @issue["number"] %>
+    </p>
+  </div>
+  <div class="card-block">
+    <blockquote class="card-blockquote">
+      <%= for assignee <- @issue["assignees"] do %>
+        <%= render "assignee.html", assignee: assignee, conn: @conn %>
+      <%= end %>
+    </blockquote>
+  </div>
+</div>

@@ -31,16 +31,29 @@ defmodule Churros.TeamController do
     GitHub.issue_events(organisation, name, id, @client)
   end
 
+  defp labelled_issues(issues) do
+    Enum.filter(issues, fn(i) -> 
+      length(i["labels"]) >= 1
+    end)
+  end
+  defp unlabelled_issues(issues) do
+    Enum.filter(issues, fn(i) -> 
+      length(i["labels"]) <= 0
+    end)
+  end
+
   def index(conn, _params) do
     id = team(:id)
     name = team(:name)
     organisation = team(:org)
   
     _team = GitHub.organisation_team(id, @client)
-    
     _issues = filter_issues(GitHub.issues_open(organisation, name, @client))
 
-    render conn, "index.html", team: _team, issues: _issues
+    render conn, "index.html",
+      team: _team,
+      labelled: labelled_issues(_issues),
+      unlabelled: unlabelled_issues(_issues)
   end
 end
 

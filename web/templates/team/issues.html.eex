@@ -1,7 +1,17 @@
-<div class="card-group">
-  <%= for issue <- @issues do %>
-    <%= if Map.has_key?(issue, "assignees") do %>
-        <%= render "issue.html", issue: issue, conn: @conn %>
+<%= if @labelled == true do %>
+  <div class="card-columns">
+    <%= for issue <- @issues do %>
+      <%= if Map.has_key?(issue, "assignees") do %>
+          <%= render "issue_labelled.html", issue: issue, conn: @conn %>
+      <%= end %>
     <%= end %>
-  <%= end %>
-</div>
+  </div>
+<%= else %>
+  <div class="card-columns">
+    <%= for issue <- @issues do %>
+      <%= if Map.has_key?(issue, "assignees") do %>
+          <%= render "issue_unlabelled.html", issue: issue, conn: @conn %>
+      <%= end %>
+    <%= end %>
+  </div>
+<%= end %>
