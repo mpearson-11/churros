@@ -33,4 +33,9 @@ defmodule Churros.GithubChannel do
     IO.inspect(params)
     {:noreply, socket}
   end
+  
+  def handle_in("github:projects", params, socket) do
+    IO.inspect(params)
+    {:noreply, socket}
+  end
 end
