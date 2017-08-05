@@ -1,6 +1,6 @@
 defmodule Churros.OrgController do
   use Churros.Web, :controller
-  alias Churros.GithubController, as: Github
+  alias Churros.Github.MainController, as: Github
 
   @client(Tentacat.Client.new(%{access_token: Application.get_env(:churros, :access_token)}))
 

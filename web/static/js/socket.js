@@ -3,9 +3,10 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
+import client from 'github-graphql-client';
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", { params: { token: window.userToken } })
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -51,11 +52,30 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
-socket.connect()
+socket.connect();
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
+// let RoomChannel = socket.channel("rooms:lobby", {})
+let GithubChannel = socket.channel("github:lobby", {})
+
+const createEvent = (type, response) => {
+  return [`github:${type}`, JSON.stringify(response)];
+};
+
+const pushToChannel = type => (error, response) => {
+  if (!error) {
+    GithubChannel.push(...createEvent(type, response));
+  } else {
+    console.log("Error caught!!");
+  }
+};
+
+GithubChannel.on("message", ({ body }) => {
+  const pushMessage = pushToChannel(body.type);
+  const request = client({ token: body.token, query: body.query }, pushMessage);
+});
+
+GithubChannel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 

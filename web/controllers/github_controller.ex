@@ -1,39 +1,28 @@
 defmodule Churros.GithubController do
-  def user_events(name, org, client) do
-    Tentacat.Users.Events.list_user_org(name, org, client)
-  end
-  def user_events(name, client) do
-    Tentacat.Users.Events.list(name, client)
-  end
-  def organisation_teams(name, client) do
-    Tentacat.Organizations.Teams.list(name, client)
-  end
-  def organisation_team(id, client) do
-    Tentacat.Organizations.Teams.find(id, client)
-  end
-  def organisation_members(name, client) do
-    Tentacat.Organizations.Members.list(name, client)
-  end
-  def organisation_team_members(team_id, client) do
-    Tentacat.Teams.Members.list(team_id, client)
-  end
-  def organisation_repos(name, client) do
-    Tentacat.Repositories.list_orgs(name, client)
-  end
-  def organisation(name, client) do
-    Tentacat.Organizations.find(name, client)
-  end
-  def issues(owner, name, client) do
-    Tentacat.Issues.list(owner, name, client)
-  end
-  def issues_open(owner, name, client) do
-    Tentacat.Issues.filter(owner, name, %{"status" => "open", "filter" => "assigned" }, client)
-  end
-  def issue_events(owner, name, client) do
-    Tentacat.Issues.Events.list_all(owner, name, client)
+  use Churros.Web, :controller
+  alias Churros.Github.UtilController, as: UtilController
+  alias Churros.Github.MainController, as: MainController
+
+  def organisation_teams() do
+    org = Application.get_env(:churros, :organisation)
+    graphql_call(UtilController.organisation_teams(org), "teams")
   end
 
-  def repo(owner, name, client) do
-    Tentacat.Repositories.repo_get(owner, name, client)
+  def organisation_members() do
+    org = Application.get_env(:churros, :organisation)
+    graphql_call(UtilController.organisation_members(org), "members")
+  end
+
+  def grapql_test(conn, %{"query" => query}) do
+    graphql_call(" query { viewer { login } }", "teams")
+    render conn, Churros.LayoutView, "messages.html"
+  end
+
+  defp graphql_call(query, type) do
+    Churros.Endpoint.broadcast("github:lobby", "message", %{body: %{
+      token: Application.get_env(:churros, :access_token),
+      query: query,
+      type: type
+    }})
   end
 end
