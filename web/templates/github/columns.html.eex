@@ -1,0 +1,8 @@
+<%= for column <- @columns do %>
+  <%= if length(column["cards"]["nodes"]) >= 1 do %>
+    <div class="col">
+      <h4><%= column["name"] %></h4>
+      <%= render "cards.html", cards: column["cards"]["nodes"] %>
+    </div>
+  <%= end %>
+<%= end %>

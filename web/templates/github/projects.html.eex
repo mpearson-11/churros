@@ -1,0 +1,20 @@
+<%= for project <- @projects do %>
+  <%= if length(project["columns"]["nodes"]) >= 1 do %>
+    <div class="row">
+      <div class="col-12 mt-5 mb-5">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="jumbotron">
+                <h1 class="display-3"><%= project["name"] %></h1>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <%= render "columns.html", columns: project["columns"]["nodes"] %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%= end %>
+<%= end %>

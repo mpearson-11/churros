@@ -1,0 +1,4 @@
+<%= for issue <- @issues do %>
+  <p><%= issue["body"] %></p>
+  <hr />
+<%= end %>

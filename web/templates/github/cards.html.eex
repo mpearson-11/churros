@@ -1,0 +1,6 @@
+<%= for card <- @cards do %>
+  <div class="card" style="width: 20rem;">
+    <div class="card-block">
+    </div>
+  </div>
+<%= end %>

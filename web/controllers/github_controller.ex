@@ -8,6 +8,12 @@ defmodule Churros.GithubController do
     graphql_call(UtilController.organisation_teams(org), "teams")
   end
 
+  def organisation_issues() do
+    org = Application.get_env(:churros, :organisation)
+    team_name = Application.get_env(:churros, :team_name)
+    graphql_call(UtilController.organisation_issues(org, team_name), "issues")
+  end
+
   def organisation_members() do
     org = Application.get_env(:churros, :organisation)
     graphql_call(UtilController.organisation_members(org), "members")
@@ -20,7 +26,6 @@ defmodule Churros.GithubController do
   end
 
   def grapql_test(conn, %{"query" => query}) do
-    graphql_call(" query { viewer { login } }", "teams")
     render conn, Churros.LayoutView, "messages.html"
   end
 
