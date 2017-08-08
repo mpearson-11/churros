@@ -64,6 +64,11 @@ defmodule Churros.GithubView do
   end
 
   def filter_assignees(project) do
+    # ------------------------------------------------------ #
+    # Cleaned up                                             #
+    # ------------------------------------------------------ #
+    # ^ Enum.uniq(filter_columns(nodes(columns(project))))
+    # ------------------------------------------------------ #
     project
     |> columns
     |> nodes

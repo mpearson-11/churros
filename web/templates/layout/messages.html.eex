@@ -1,5 +1,4 @@
+<%= Churros.GithubView.get_projects() %>
+
 <div id="live-data">
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: <%= Churros.GithubView.get_projects() %>" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
 </div>
