@@ -44,7 +44,7 @@ defmodule Churros.Github.UtilController do
     "query { 
       repositoryOwner(login: \"#{org}\") {
         repository(name: \"#{repo}\") {
-          projects(first: 100) {
+          projects(first: 10, states: OPEN) {
             nodes {
               body
               bodyHTML
@@ -56,12 +56,44 @@ defmodule Churros.Github.UtilController do
               columns(first: 10) {
                 nodes {
                   name
-                  cards(first: 100) {
+                  cards(first: 20) {
                     nodes {
-                      content{
-                        __typename
+                      content {
+                        ... on PullRequest {
+                          assignees(first: 10) {
+                            nodes {
+                              avatarUrl
+                              login
+                            }
+                          }
+                          body
+                          title
+                          number
+                          labels(first: 5) {
+                            nodes {
+                              name
+                              color
+                            }
+                          }
+                        }
+                        ... on Issue {
+                          assignees(first: 10) {
+                            nodes {
+                              avatarUrl
+                              login
+                            }
+                          }
+                          body
+                          title
+                          number
+                          labels(first: 5) {
+                            nodes {
+                              name
+                              color
+                            }
+                          }
+                        }
                       }
-                      note
                     }
                   }
                 }

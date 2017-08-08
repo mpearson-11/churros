@@ -4,12 +4,14 @@
       <div class="col-12 mt-5 mb-5">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12">
-              <div class="jumbotron">
-                <h1 class="display-3"><%= project["name"] %></h1>
-              </div>
+            <div class="col-4">
+              <h1 class="display-4"><%= project["name"] %></h1>
+            </div>
+            <div class="col-8">
+              <%= render "assignees.html", assignees: filter_assignees(project) %>
             </div>
           </div>
+          <hr />
           <div class="row">
             <%= render "columns.html", columns: project["columns"]["nodes"] %>
           </div>

@@ -1,0 +1,12 @@
+<ul class="nav justify-content-left">
+  <%= for assignee <- @assignees do %>
+    <li class="nav-item">
+      <a class="navbar-brand" href="#">
+        <img src='<%= assignee["avatarUrl"] %>' width="50" height="50" alt="">
+      </a>
+    </li>
+    <li class="nav-item">
+      <span class="navbar-text"><%= assignee["login"] %></span>
+    </li>
+  <%= end %>
+</ul>

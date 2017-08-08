@@ -1,6 +1,24 @@
 <%= for card <- @cards do %>
-  <div class="card" style="width: 20rem;">
-    <div class="card-block">
+  <%= if Map.has_key?(card, "content") do %>
+    <div class="card">
+      <div class="card-block">
+        <div class="card-title">
+          <%= card["content"]["title"] %>: <strong>#<%= card["content"]["number"] %></strong>
+          <%= render "labels.html", card: card %>
+        </div>
+        <p class="card-text">
+          <%= if card["content"]["__typename"] == "PullRequest" do %>
+            <%= if card["content"]["merged"] == "true" do %>
+              <span> Merged At: <%= card["content"]["mergedAt"] %></span>
+            <%= end %>
+          <%= else %>
+            <%= if card["content"]["closed"] == "true" do %>
+              <span> Closed</span>
+            <%= end %>
+          <%= end %>
+        </p>
+      </div>
     </div>
-  </div>
+    <hr />
+  <%= end %>
 <%= end %>

@@ -5,31 +5,36 @@ defmodule Churros.GithubController do
 
   def organisation_teams() do
     org = Application.get_env(:churros, :organisation)
-    graphql_call(UtilController.organisation_teams(org), "teams")
+    "teams" |> graphql_call(UtilController.organisation_teams(org))
+    true
   end
 
   def organisation_issues() do
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
-    graphql_call(UtilController.organisation_issues(org, team_name), "issues")
+    "issues" |> graphql_call(UtilController.organisation_issues(org, team_name))
+    true
   end
 
   def organisation_members() do
     org = Application.get_env(:churros, :organisation)
-    graphql_call(UtilController.organisation_members(org), "members")
+    "members" |> graphql_call( UtilController.organisation_members(org))
+    true
   end
 
   def repository_projects() do
+    IO.inspect("=> Loading repository projects")
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
-    graphql_call(UtilController.projects(org, team_name), "projects")
+    "projects" |> graphql_call(UtilController.projects(org, team_name))
+    true
   end
 
-  def grapql_test(conn, %{"query" => query}) do
+  def graphql_space(conn, _params) do
     render conn, Churros.LayoutView, "messages.html"
   end
 
-  defp graphql_call(query, type) do
+  defp graphql_call(type, query) do
     Churros.Endpoint.broadcast("github:lobby", "message", %{body: %{
       token: Application.get_env(:churros, :access_token),
       query: query,

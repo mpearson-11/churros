@@ -35,7 +35,7 @@ defmodule Churros.Router do
   end
   scope "/graphql", Churros do
     pipe_through :browser # Use the default browser stack
-    get "/test/:query", GithubController, :grapql_test
+    get "/space", GithubController, :graphql_space
   end
 
   # Other scopes may use custom stacks.

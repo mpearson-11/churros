@@ -59,6 +59,10 @@ defmodule Churros.GithubChannel do
     |> nodes
   end
 
+  def process_map(type) do
+    %{"issues": :issues}
+  end
+
 
   def join("github:lobby", _message, socket) do
     {:ok, socket}
@@ -100,7 +104,6 @@ defmodule Churros.GithubChannel do
 
   def handle_in("github:issues", params, socket) do
     data = process(params, :issues)
-    IO.inspect(data)
     html = Phoenix.View.render_to_string(Churros.GithubView, "issues.html", issues: data)
 
     broadcast!(socket, process(params)["ack"], %{ html: html })
