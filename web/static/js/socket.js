@@ -68,8 +68,11 @@ function generateRandAlphaNumStr(len, data) {
 //
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
+const randomNumber = max => {
+  return (max * (Math.random() + 1));
+};
 
-socket.connect({ user_id: 999 });
+socket.connect({ user_id: generateRandAlphaNumStr(randomNumber(50), "user_socket_connect" )});
 
 // Now that you are connected, you can join channels with a topic:
 // let RoomChannel = socket.channel("rooms:lobby", {})
