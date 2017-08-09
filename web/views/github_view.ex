@@ -41,7 +41,7 @@ defmodule Churros.GithubView do
     end)
   end
 
-  def filter_column(column, :correct) do
+  def filter_column(column) do
     column_nodes = column |> cards |> nodes
     if column["cards"] != nil && column_nodes != nil do
       column
