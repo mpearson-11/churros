@@ -23,15 +23,27 @@ defmodule Churros.GithubController do
   end
 
   def repository_projects() do
-    IO.inspect("=> Loading repository projects")
+    IO.inspect(" Loading PROJECTS \n \n")
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
     "projects" |> graphql_call(UtilController.projects(org, team_name))
     true
   end
 
-  def graphql_space(conn, _params) do
-    render conn, Churros.LayoutView, "messages.html"
+  def repository_project(number) do
+    IO.inspect(" Loading PROJECTS \n \n")
+    org = Application.get_env(:churros, :organisation)
+    team_name = Application.get_env(:churros, :team_name)
+    "project" |> graphql_call(UtilController.project(org, team_name, number))
+    true
+  end
+
+  def graphql_projects(conn, _params) do
+    render conn, Churros.LayoutView, "graphql_projects.html"
+  end
+
+  def graphql_project(conn, %{"number" => number}) do
+    render conn, Churros.LayoutView, "graphql_project.html", number: number
   end
 
   defp graphql_call(type, query) do

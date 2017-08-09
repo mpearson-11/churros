@@ -40,6 +40,69 @@ defmodule Churros.Github.UtilController do
     }"
   end
 
+  def project(org, repo, project) do
+    "query { 
+      repositoryOwner(login: \"#{org}\") {
+        repository(name: \"#{repo}\") {
+          project(number: #{project}) {
+            body
+            bodyHTML
+            closedAt
+            createdAt
+            id
+            name
+            number
+            columns(first: 7) {
+              nodes {
+                name
+                cards(first: 20) {
+                  nodes {
+                    content {
+                      ... on PullRequest {
+                        assignees(first: 10) {
+                          nodes {
+                            avatarUrl
+                            login
+                          }
+                        }
+                        body
+                        title
+                        number
+                        labels(first: 5) {
+                          nodes {
+                            name
+                            color
+                          }
+                        }
+                      }
+                      ... on Issue {
+                        assignees(first: 10) {
+                          nodes {
+                            avatarUrl
+                            login
+                          }
+                        }
+                        body
+                        title
+                        number
+                        labels(first: 5) {
+                          nodes {
+                            name
+                            color
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }"
+  end
+
   def projects(org, repo) do
     "query { 
       repositoryOwner(login: \"#{org}\") {

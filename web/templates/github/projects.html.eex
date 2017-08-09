@@ -1,23 +1,6 @@
 <%= for project <- @projects do %>
   <%= if length(project["columns"]["nodes"]) >= 1 do %>
-    <div class="row rounded bg-faded">
-      <div class="col-12 mt-5 mb-5">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-5">
-              <h1 class="display-2"><%= project["name"] %></h1>
-            </div>
-            <div class="col-7">
-              <%= render "assignees.html", assignees: filter_assignees(project) %>
-            </div>
-          </div>
-          <hr />
-          <div class="row">
-            <%= render "columns.html", columns: project["columns"]["nodes"] %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render "project.html", project: project %>
   <%= end %>
 <%= end %>
 <div class="jumbotron">

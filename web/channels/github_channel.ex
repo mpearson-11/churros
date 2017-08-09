@@ -28,6 +28,9 @@ defmodule Churros.GithubChannel do
   defp projects(body) do
     body["projects"]
   end
+  defp project(body) do
+    body["project"]
+  end
   defp issues(body) do
     body["issues"]
   end
@@ -48,6 +51,14 @@ defmodule Churros.GithubChannel do
     |> repository
     |> projects
     |> nodes
+  end
+
+  defp process(body, :project) do
+    process(body)
+    |> data
+    |> repository_owner
+    |> repository
+    |> project
   end
 
   defp process(body, :issues) do
@@ -97,6 +108,14 @@ defmodule Churros.GithubChannel do
   def handle_in("github:projects", params, socket) do
     data = process(params, :projects)
     html = Phoenix.View.render_to_string(Churros.GithubView, "projects.html", projects: data)
+
+    broadcast!(socket, process(params)["ack"], %{ html: html})
+    {:noreply, socket}
+  end
+
+  def handle_in("github:project", params, socket) do
+    data = process(params, :project)
+    html = Phoenix.View.render_to_string(Churros.GithubView, "project.html", project: data)
 
     broadcast!(socket, process(params)["ack"], %{ html: html})
     {:noreply, socket}

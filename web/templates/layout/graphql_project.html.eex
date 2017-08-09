@@ -1,0 +1,4 @@
+<%= Churros.GithubView.get_project(@number) %>
+
+<div id="live-data">
+</div>

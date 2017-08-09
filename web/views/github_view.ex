@@ -82,11 +82,20 @@ defmodule Churros.GithubView do
   end
 
   def get_projects() do
-    # Uncomment to start task on page load #
-    # Task.start(fn ->
-    #   Process.sleep(1000)
-    #   Churros.GithubController.repository_projects()
-    # end)
+    # Uncomment to start task on page load
+    Task.start(fn ->
+      Process.sleep(3000)
+      Churros.GithubController.repository_projects()
+    end)
+    nil
+  end
+
+  def get_project(number) do
+    # Uncomment to start task on page load
+    Task.start(fn ->
+      Process.sleep(3000)
+      Churros.GithubController.repository_project(number)
+    end)
     nil
   end
 end

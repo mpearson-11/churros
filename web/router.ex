@@ -35,7 +35,8 @@ defmodule Churros.Router do
   end
   scope "/graphql", Churros do
     pipe_through :browser # Use the default browser stack
-    get "/space", GithubController, :graphql_space
+    get "/projects", GithubController, :graphql_projects
+    get "/project/:number", GithubController, :graphql_project
   end
 
   # Other scopes may use custom stacks.
