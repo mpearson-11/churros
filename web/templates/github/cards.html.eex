@@ -1,9 +1,9 @@
 <%= for card <- @cards do %>
   <%= if Map.has_key?(card, "content") do %>
-    <div class="card">
+    <div class="card mt-1 mb-1">
       <div class="card-block">
         <div class="card-title">
-          <%= card["content"]["title"] %>: <strong>#<%= card["content"]["number"] %></strong>
+          <small><%= card |> content |> title %>: <strong>#<%= card |> content |> number %></strong></small>
           <%= render "labels.html", card: card %>
         </div>
         <p class="card-text">
@@ -19,6 +19,5 @@
         </p>
       </div>
     </div>
-    <hr />
   <%= end %>
 <%= end %>

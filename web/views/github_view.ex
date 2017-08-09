@@ -1,6 +1,12 @@
 defmodule Churros.GithubView do
   use Churros.Web, :view
 
+  def number(data) do
+    data["number"]
+  end
+  def title(data) do
+    data["title"]
+  end
   def content(data) do
     data["content"]
   end
@@ -77,10 +83,10 @@ defmodule Churros.GithubView do
 
   def get_projects() do
     # Uncomment to start task on page load #
-    Task.start(fn ->
-      Process.sleep(1000)
-      Churros.GithubController.repository_projects()
-    end)
+    # Task.start(fn ->
+    #   Process.sleep(1000)
+    #   Churros.GithubController.repository_projects()
+    # end)
     nil
   end
 end

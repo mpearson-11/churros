@@ -1,7 +1,7 @@
 <%= if @card["content"]["labels"]["nodes"] != nil do %>
   <%= for label <- @card["content"]["labels"]["nodes"] do %>
     <span style='background-color:#<%= label["color"] %>;color: white; padding:3px; margin:1px; border-radius: 2px; font-size: 8pt;'>
-      <%= label["name"] %>
+      <small><%= label["name"] %></small>
     </span>
   <%= end %>
 <%= end %>
