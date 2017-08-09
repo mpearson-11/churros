@@ -43,8 +43,7 @@ defmodule Churros.GithubView do
 
   def filter_column(column, :correct) do
     column_nodes = column |> cards |> nodes
-
-    if column["cards"] != nil && column_nodes != nil) do
+    if column["cards"] != nil && column_nodes != nil do
       column
       |> cards
       |> nodes
@@ -77,10 +76,11 @@ defmodule Churros.GithubView do
   end
 
   def get_projects() do
-    # Task.start(fn ->
-    #   Process.sleep(1000)
-    #   Churros.GithubController.repository_projects()
-    # end)
+    # Uncomment to start task on page load #
+    Task.start(fn ->
+      Process.sleep(1000)
+      Churros.GithubController.repository_projects()
+    end)
     nil
   end
 end
