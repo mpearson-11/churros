@@ -249,6 +249,32 @@ defmodule Churros.Github.UtilController do
     }"
   end
 
+  def organisation_issues_timeline(org, repo) do
+    "{
+      repositoryOwner(login: \"#{org}\") {
+        repository(name: \"#{repo}\") {
+          issues(first: 100) {
+            nodes {
+              bodyHTML
+              timeline(last: 7) {
+                nodes {
+                  ... on AssignedEvent {
+                    createdAt
+                    actor {
+                      ... on User {
+                        avatarUrl
+                        login
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }"
+  end
 end
 
 # Type queries into this side of the screen, and you will 

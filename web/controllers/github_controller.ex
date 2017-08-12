@@ -2,6 +2,7 @@ defmodule Churros.GithubController do
   use Churros.Web, :controller
   alias Churros.Github.UtilController, as: UtilController
   alias Churros.Github.MainController, as: MainController
+  require Logger
 
   def organisation_teams() do
     org = Application.get_env(:churros, :organisation)
@@ -16,6 +17,12 @@ defmodule Churros.GithubController do
     true
   end
 
+  def organisation_issues_html(repo, text) do
+    org = Application.get_env(:churros, :organisation)
+    "issues" |> graphql_call(UtilController.organisation_issues_timeline(org, repo))
+    true
+  end
+
   def organisation_members() do
     org = Application.get_env(:churros, :organisation)
     "members" |> graphql_call( UtilController.organisation_members(org))
@@ -23,7 +30,8 @@ defmodule Churros.GithubController do
   end
 
   def repository_projects() do
-    IO.inspect(" Loading PROJECTS \n \n")
+    Logger.info "Loading Repository Projects ===>"
+
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
     "projects" |> graphql_call(UtilController.projects(org, team_name))
@@ -31,11 +39,16 @@ defmodule Churros.GithubController do
   end
 
   def repository_project(number) do
-    IO.inspect(" Loading PROJECTS \n \n")
+    Logger.info "Loading Repository Project ===>"
+
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
     "project" |> graphql_call(UtilController.project(org, team_name, number))
     true
+  end
+
+  def graphql_issues_html(conn, _params) do
+    render conn, Churros.LayoutView, "graphql_issues_html.html"
   end
 
   def graphql_projects(conn, _params) do
@@ -47,7 +60,7 @@ defmodule Churros.GithubController do
   end
 
   defp graphql_call(type, query) do
-    Churros.Endpoint.broadcast("github:lobby", "message", %{body: %{
+    Churros.Endpoint.broadcast!("github:lobby", "message", %{body: %{
       token: Application.get_env(:churros, :access_token),
       query: query,
       type: type

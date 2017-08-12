@@ -104,7 +104,7 @@ defmodule Churros.GithubChannel do
   def handle_in("github:members", params, socket) do
     {:noreply, socket}
   end
-  
+
   def handle_in("github:projects", params, socket) do
     data = process(params, :projects)
     html = Phoenix.View.render_to_string(Churros.GithubView, "projects.html", projects: data)
