@@ -70,11 +70,6 @@ defmodule Churros.GithubChannel do
     |> nodes
   end
 
-  def process_map(type) do
-    %{"issues": :issues}
-  end
-
-
   def join("github:lobby", _message, socket) do
     {:ok, socket}
   end
@@ -101,7 +96,7 @@ defmodule Churros.GithubChannel do
     {:noreply, socket}
   end
 
-  def handle_in("github:members", params, socket) do
+  def handle_in("github:members", _, socket) do
     {:noreply, socket}
   end
 

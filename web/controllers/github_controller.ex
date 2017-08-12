@@ -1,7 +1,6 @@
 defmodule Churros.GithubController do
   use Churros.Web, :controller
   alias Churros.Github.UtilController, as: UtilController
-  alias Churros.Github.MainController, as: MainController
   require Logger
 
   def organisation_teams() do

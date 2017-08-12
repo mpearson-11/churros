@@ -11,9 +11,6 @@ defmodule Churros.GithubTask do
     GenServer.start_link(__MODULE__, 0)
   end
 
-  defp seconds(number) do
-    number * 1000
-  end
   defp seconds(number, :converted) do
     "#{(number / 1000)} seconds"
   end
@@ -25,7 +22,7 @@ defmodule Churros.GithubTask do
     "#{(number / 1000) / 60} minutes"
   end
 
-  def init(state) do
+  def init(_) do
     # Task starter
     start_after = start_work_time()
     Process.send_after(self(), :work, start_after)
@@ -43,16 +40,16 @@ defmodule Churros.GithubTask do
     time |> minutes
   end
 
+  defp work_task() do
+    Churros.GithubController.repository_projects()
+  end
+
   def handle_info(:work_timer, load_time) do
     # Return log for how long left for task to refresh!!!
     Logger.info "Loading in: #{seconds(load_time, :converted)}"
 
     Process.send_after(self(), :work_timer, 1000)
     {:noreply, load_time - 1000}
-  end
-
-  defp work_task() do
-    Churros.GithubController.repository_projects()
   end
 
   def handle_info(:work, _) do

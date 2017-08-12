@@ -25,12 +25,6 @@ defmodule Churros.TeamController do
     end)
   end
 
-  defp issue_events(id) do
-    name = team(:name)
-    organisation = team(:org)
-    GitHub.issue_events(organisation, name, id, @client)
-  end
-
   defp labelled_issues(issues) do
     Enum.filter(issues, fn(i) -> 
       length(i["labels"]) >= 1
@@ -47,13 +41,13 @@ defmodule Churros.TeamController do
     name = team(:name)
     organisation = team(:org)
   
-    _team = GitHub.organisation_team(id, @client)
-    _issues = filter_issues(GitHub.issues_open(organisation, name, @client))
+    team_ = GitHub.organisation_team(id, @client)
+    issues_ = filter_issues(GitHub.issues_open(organisation, name, @client))
 
     render conn, "index.html",
-      team: _team,
-      labelled: labelled_issues(_issues),
-      unlabelled: unlabelled_issues(_issues)
+      team: team_,
+      labelled: labelled_issues(issues_),
+      unlabelled: unlabelled_issues(issues_)
   end
 end
 
