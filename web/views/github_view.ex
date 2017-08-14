@@ -81,7 +81,7 @@ defmodule Churros.GithubView do
     |> Enum.uniq
   end
 
-  def get_projects() do
+  def get_projects do
     # Uncomment to start task on page load
     Task.start(fn ->
       Process.sleep(3000)

@@ -3,13 +3,13 @@ defmodule Churros.GithubController do
   alias Churros.Github.UtilController, as: UtilController
   require Logger
 
-  def organisation_teams() do
+  def organisation_teams do
     org = Application.get_env(:churros, :organisation)
     "teams" |> graphql_call(UtilController.organisation_teams(org))
     true
   end
 
-  def organisation_issues() do
+  def organisation_issues do
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
     "issues" |> graphql_call(UtilController.organisation_issues(org, team_name))
@@ -22,13 +22,13 @@ defmodule Churros.GithubController do
     true
   end
 
-  def organisation_members() do
+  def organisation_members do
     org = Application.get_env(:churros, :organisation)
     "members" |> graphql_call( UtilController.organisation_members(org))
     true
   end
 
-  def repository_projects() do
+  def repository_projects do
     Logger.info "Loading Repository Projects ===>"
 
     org = Application.get_env(:churros, :organisation)
