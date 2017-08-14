@@ -58,12 +58,12 @@ defmodule Churros.GithubTask do
     {:noreply, load_time - 1000}
   end
 
-  def handle_info(:work_2, _) do
+  def handle_info(:work_2, state) do
     Logger.info "Github Issues Task: refresh_issues, every: #{minutes(work_time2(), :converted)}"
 
     Churros.Endpoint.broadcast!("github:lobby", "refresh_issues", %{})
-    Process.send_after(self(), :work, work_time2())
-    {:noreply, work_time()}
+    Process.send_after(self(), :work_2, work_time2())
+    {:noreply, state}
   end
 
   def handle_info(:work, _) do
