@@ -88,6 +88,11 @@ defmodule Churros.GithubChannel do
     {:noreply, socket}
   end
 
+  def handle_in("refresh_issues", _params, socket) do
+    broadcast! socket, "refresh_issues", %{}
+    {:noreply, socket}
+  end
+
   def handle_in("github:teams", params, socket) do
     data = process(params, :teams)
     html = Phoenix.View.render_to_string(Churros.GithubView, "teams.html", teams: data)

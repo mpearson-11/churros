@@ -61,6 +61,12 @@ GithubChannel.on("message", ({ body }) => {
   }
 });
 
+GithubChannel.on("refresh_issues", () => {
+  if ($("#refresh_issues")) {
+    window.location.href = window.location.href;
+  }
+});
+
 socket.onConnClose(() => { console.log("Closed connection socket") });
 socket.onClose(() => {
   console.log("Closed connection socket")

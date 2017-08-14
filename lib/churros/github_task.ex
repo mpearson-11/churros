@@ -26,12 +26,18 @@ defmodule Churros.GithubTask do
     # Task starter
     start_after = start_work_time()
     Process.send_after(self(), :work, start_after)
-    Process.send_after(self(), :work_timer, (start_after - 1))
+    Process.send_after(self(), :work_2, (start_after - 1))
+    Process.send_after(self(), :work_timer, (start_after - 2))
     {:ok, work_time()}
   end
 
   def work_time do
     time = Application.get_env(:churros, :work_timer) || 5
+    time |> minutes
+  end
+
+  def work_time2 do
+    time = Application.get_env(:churros, :work_timer) || 3
     time |> minutes
   end
 
@@ -50,6 +56,14 @@ defmodule Churros.GithubTask do
 
     Process.send_after(self(), :work_timer, 1000)
     {:noreply, load_time - 1000}
+  end
+
+  def handle_info(:work_2, _) do
+    Logger.info "Github Issues Task: refresh_issues, every: #{minutes(work_time2(), :converted)}"
+
+    Churros.Endpoint.broadcast!("github:lobby", "refresh_issues", %{})
+    Process.send_after(self(), :work, work_time2())
+    {:noreply, work_time()}
   end
 
   def handle_info(:work, _) do
