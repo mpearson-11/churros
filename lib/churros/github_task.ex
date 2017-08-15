@@ -37,7 +37,7 @@ defmodule Churros.GithubTask do
   end
 
   def work_time2 do
-    time = Application.get_env(:churros, :work_timer) || 3
+    time = Application.get_env(:churros, :work_timer) || 5
     time |> minutes
   end
 
