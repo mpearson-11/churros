@@ -62,7 +62,7 @@ GithubChannel.on("message", ({ body }) => {
 });
 
 GithubChannel.on("refresh_issues", () => {
-  if ($("#refresh_issues")) {
+  if ($("#refresh_issues").length >= 1 ) {
     window.location.href = window.location.href;
   }
 });
