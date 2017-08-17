@@ -1,8 +1,8 @@
 <%= for column <- @columns do %>
   <%= if length(column["cards"]["nodes"]) >= 1 do %>
-    <div class="col">
-      <div class="alert alert alert-danger" role="alert">
-        <small><%= column["name"] %></small>
+    <div class="col custom-border">
+      <div class="alert" role="alert">
+        <small class="font-weight-bold"><%= column["name"] %></small>
       </div>
       <%= render "cards.html", cards: column["cards"]["nodes"] %>
     </div>

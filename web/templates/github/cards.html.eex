@@ -1,11 +1,12 @@
 <%= for card <- @cards do %>
   <%= if Map.has_key?(card, "content") do %>
-    <div class="card mt-1 mb-1">
+    <div class="card mt-2 mb-1">
+      <div class="card-header">
+        <small>#<%= card |> content |> number %></small>
+        <%= render "labels.html", card: card %>
+      </div>
       <div class="card-block">
-        <div class="card-title">
-          <small><%= card |> content |> title %>: <strong>#<%= card |> content |> number %></strong></small>
-          <%= render "labels.html", card: card %>
-        </div>
+        <small><%= card |> content |> title %></small>
         <p class="card-text">
           <%= if card["content"]["__typename"] == "PullRequest" do %>
             <%= if card["content"]["merged"] == "true" do %>

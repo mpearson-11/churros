@@ -1,6 +1,7 @@
 defmodule Churros.GithubController do
   use Churros.Web, :controller
   alias Churros.Github.UtilController, as: UtilController
+  alias Churros.Github.TestController, as: TestController
   require Logger
 
   def organisation_teams do
@@ -44,6 +45,11 @@ defmodule Churros.GithubController do
     team_name = Application.get_env(:churros, :team_name)
     "project" |> graphql_call(UtilController.project(org, team_name, number))
     true
+  end
+
+  def graphql_projects_test(conn, _params) do
+    projects = TestController.load_projects_test()
+    render conn, Churros.GithubView, "projects.html", projects: projects
   end
 
   def graphql_issues_html(conn, _params) do
