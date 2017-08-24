@@ -28,3 +28,12 @@
     box-shadow: 0px 1px 1px 1px grey;
     margin: 2px;
 }
+.drop-opacity {
+    opacity: 0.7;
+}
+.custom-title {
+    font-size: 30px;
+    top: 50px;
+    left: 40%;
+    position: absolute;
+}
