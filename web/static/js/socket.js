@@ -49,14 +49,25 @@ const pushToChannel = (type, ack) => (error, response) => {
   }
 };
 
+const liveData = $("#live-data");
+const socketName = liveData.data("socket-name");
+
+const hasProject = body => {
+  if (body.number && body.team_name) {
+      return socketName === `${body.type}-${body.team_name}-${body.number}`;
+  } else {
+    return false;
+  }
+};
+
 GithubChannel.on("message", ({ body }) => {
-  if ($("#live-data") && $("#live-data").data("socket-name") === body.type) {
+  if (hasProject(body) || socketName === body.type) {
     const ack = generateRandAlphaNumStr(40, JSON.stringify(body.query));
     const pushMessage = pushToChannel(body.type, ack);
     const request = client({ token: body.token, query: body.query }, pushMessage);
 
     GithubChannel.on(ack, payload => {
-      $("#live-data").html(payload.html);
+      liveData.html(payload.html);
     });
   }
 });

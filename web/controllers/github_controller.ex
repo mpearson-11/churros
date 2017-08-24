@@ -43,7 +43,8 @@ defmodule Churros.GithubController do
 
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
-    "project" |> graphql_call(UtilController.project(org, team_name, number))
+
+    graphql_call(team_name, number, "project", UtilController.project(org, team_name, number))
     true
   end
 
@@ -61,7 +62,8 @@ defmodule Churros.GithubController do
   end
 
   def graphql_project(conn, %{"number" => number}) do
-    render conn, Churros.LayoutView, "graphql_project.html", number: number
+    team_name = Application.get_env(:churros, :team_name)
+    render conn, Churros.LayoutView, "graphql_project.html", id: "project-#{team_name}-#{number}"
   end
 
   defp graphql_call(type, query) do
@@ -69,6 +71,15 @@ defmodule Churros.GithubController do
       token: Application.get_env(:churros, :access_token),
       query: query,
       type: type
+    }})
+  end
+  defp graphql_call(team_name, number, type, query) do
+    Churros.Endpoint.broadcast!("github:lobby", "message", %{body: %{
+      token: Application.get_env(:churros, :access_token),
+      query: query,
+      type: type,
+      number: number,
+      team_name: team_name
     }})
   end
 end
