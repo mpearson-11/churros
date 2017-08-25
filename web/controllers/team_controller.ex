@@ -45,7 +45,7 @@ defmodule Churros.TeamController do
     github_issues = GitHub.issues_open(organisation, name, @client)
 
     if github_issues != nil do
-      issues_ = filter_issues(GitHub.issues_open(organisation, name, @client))
+      issues_ = filter_issues(github_issues)
 
       render conn, "index.html",
         team: team_,
