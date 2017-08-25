@@ -26,6 +26,12 @@
     left: 65%;
     position: absolute;
 }
+.truncate {
+  width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .tiny {
     font-size: 13pt;
     color: darkblue;
