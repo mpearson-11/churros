@@ -63,7 +63,7 @@ defmodule Churros.GithubController do
 
   def graphql_project(conn, %{"number" => number}) do
     team_name = Application.get_env(:churros, :team_name)
-    render conn, Churros.LayoutView, "graphql_project.html", id: "project-#{team_name}-#{number}"
+    render conn, Churros.LayoutView, "graphql_project.html", id: "project-#{team_name}-#{number}", project: "team: #{team_name}, project number: #{number}"
   end
 
   defp graphql_call(type, query) do

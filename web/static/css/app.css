@@ -1,24 +1,12 @@
 /* This file is for your main application css. */
 
-.loader-1 {
-    text-align: center;
-    border: 18px solid #f3f3f3; /* Light grey */
-    border-top: 18px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 350px;
-    height: 350px;
-    animation: spin 1s linear infinite;
-    box-shadow: 0px 0px 2px 3px #3498db;
-}
 .loader-2 {
-    text-align: center;
-    border: 18px solid #f3f3f3; /* Light grey */
-    border-top: 18px solid #3498db; /* Blue */
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 350px;
-    height: 350px;
+    width: 100px;
+    height: 100px;
     animation: spin 1s linear reverse infinite;
-    box-shadow: 0px 0px 2px 3px #3498db;
 }
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -36,7 +24,7 @@
     font-weight: bold;
     font-size: 50px;
     top: 50px;
-    left: 40%;
+    left: 70%;
     position: absolute;
 }
 .tiny {
