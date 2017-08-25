@@ -2,12 +2,12 @@
 body {
     background-color: white;
 }
-.loader-2 {
-    border: 2px solid #f3f3f3; /* Light grey */
-    border-top: 2px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
+.loading-spinner {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 70%;
+    width: 70px;
+    height: 70px;
     animation: spin 1s linear reverse infinite;
 }
 @keyframes spin {

@@ -38,8 +38,8 @@ defmodule Churros.GithubBoardTasks do
   end
 
   def work_time do
-    time = Application.get_env(:churros, :work_timer) || 2
-    time |> minutes
+    time = Application.get_env(:churros, :work_timer) || 20
+    time |> seconds
   end
 
   defp work_tasks do
@@ -49,7 +49,7 @@ defmodule Churros.GithubBoardTasks do
   end
 
   def handle_info(:work, _) do
-    Logger.info "\nGithub Task: repository_project, every: #{minutes(work_time(), :converted)}"
+    Logger.info "\nGithub Task: repository_project, every: #{seconds(work_time(), :converted)}"
 
     work_tasks() # Private function work task
     Process.send_after(self(), :work, work_time())

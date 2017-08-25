@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row mt-5 pt-5">
       <div class="col-10">
-        <h1>Waiting in Lobby for <%= @project %></h1>
+        <h2 class="mt-3">Waiting in Lobby for <%= @project %></h2>
       </div>
       <div class="col-2">
-        <span><div class="loader-2"></div></span>
+        <span><div class="loading-spinner"></div></span>
       </div>
     </div>
   </div>

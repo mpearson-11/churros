@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row mt-5 pt-5">
       <div class="col-11">
-        <h1 class="display-2">Loading Github Projects</h1>
+        <h1 class="display-4 mt-1">Waiting in Lobby for projects</h1>
       </div>
       <div class="col-1">
-        <span><div class="loader-2"></div></span>
+        <span><div class="loading-spinner"></div></span>
       </div>
     </div>
   </div>
