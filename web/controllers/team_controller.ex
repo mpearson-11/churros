@@ -1,6 +1,6 @@
 defmodule Churros.TeamController do
   use Churros.Web, :controller
-  alias Churros.GithubController, as: GitHub
+  alias Churros.Github.MainController, as: GitHub
 
   @client(Tentacat.Client.new(%{access_token: Application.get_env(:churros, :access_token)}))
   
@@ -25,12 +25,6 @@ defmodule Churros.TeamController do
     end)
   end
 
-  defp issue_events(id) do
-    name = team(:name)
-    organisation = team(:org)
-    GitHub.issue_events(organisation, name, id, @client)
-  end
-
   defp labelled_issues(issues) do
     Enum.filter(issues, fn(i) -> 
       length(i["labels"]) >= 1
@@ -47,13 +41,19 @@ defmodule Churros.TeamController do
     name = team(:name)
     organisation = team(:org)
   
-    _team = GitHub.organisation_team(id, @client)
-    _issues = filter_issues(GitHub.issues_open(organisation, name, @client))
+    team_ = GitHub.organisation_team(id, @client)
+    github_issues = GitHub.issues_open(organisation, name, @client)
 
-    render conn, "index.html",
-      team: _team,
-      labelled: labelled_issues(_issues),
-      unlabelled: unlabelled_issues(_issues)
+    if github_issues != nil do
+      issues_ = filter_issues(GitHub.issues_open(organisation, name, @client))
+
+      render conn, "index.html",
+        team: team_,
+        labelled: labelled_issues(issues_),
+        unlabelled: unlabelled_issues(issues_)
+    else
+      render conn, "index.html", team: team_, labelled: nil, unlabelled: nil
+    end
   end
 end
 

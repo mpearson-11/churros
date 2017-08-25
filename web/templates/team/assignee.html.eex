@@ -5,6 +5,6 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="navbar-brand" href="#"><%= @assignee["login"] %></a>
+    <div class="tiny truncate"><%= @assignee["login"] %></div>
   </li>
 </ul>

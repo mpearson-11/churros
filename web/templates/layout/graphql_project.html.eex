@@ -1,0 +1,12 @@
+<div id="live-data" data-socket-name='<%= @id %>'>
+  <div class="container">
+    <div class="row mt-5 pt-5">
+      <div class="col-10">
+        <h1>Waiting in Lobby for <%= @project %></h1>
+      </div>
+      <div class="col-2">
+        <span><div class="loader-2"></div></span>
+      </div>
+    </div>
+  </div>
+</div>

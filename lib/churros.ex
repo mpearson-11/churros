@@ -10,6 +10,8 @@ defmodule Churros do
     children = [
       # Start the endpoint when the application starts
       supervisor(Churros.Endpoint, []),
+      worker(Churros.GithubTask, []),
+      worker(Churros.GithubBoardTasks, []),
       # Start your own worker by calling: Churros.Worker.start_link(arg1, arg2, arg3)
       # worker(Churros.Worker, [arg1, arg2, arg3]),
     ]

@@ -3,60 +3,88 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/my_app/endpoint.ex":
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
+import client from 'github-graphql-client';
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", { params: { token: window.userToken } })
 
-// When you connect, you'll often need to authenticate the client.
-// For example, imagine you have an authentication plug, `MyAuth`,
-// which authenticates the session and assigns a `:current_user`.
-// If the current user exists you can assign the user's token in
-// the connection for use in the layout.
-//
-// In your "web/router.ex":
-//
-//     pipeline :browser do
-//       ...
-//       plug MyAuth
-//       plug :put_user_token
-//     end
-//
-//     defp put_user_token(conn, _) do
-//       if current_user = conn.assigns[:current_user] do
-//         token = Phoenix.Token.sign(conn, "user socket", current_user.id)
-//         assign(conn, :user_token, token)
-//       else
-//         conn
-//       end
-//     end
-//
-// Now you need to pass this token to JavaScript. You can do so
-// inside a script tag in "web/templates/layout/app.html.eex":
-//
-//     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
-//
-// You will need to verify the user token in the "connect/2" function
-// in "web/channels/user_socket.ex":
-//
-//     def connect(%{"token" => token}, socket) do
-//       # max_age: 1209600 is equivalent to two weeks in seconds
-//       case Phoenix.Token.verify(socket, "user socket", token, max_age: 1209600) do
-//         {:ok, user_id} ->
-//           {:ok, assign(socket, :user, user_id)}
-//         {:error, reason} ->
-//           :error
-//       end
-//     end
-//
-// Finally, pass the token on connect as below. Or remove it
-// from connect if you don't care about authentication.
+const hashCode = str => {
+  var hash = 0, i, chr;
+  if (str.length === 0) return hash;
+  for (i = 0; i < str.length; i++) {
+    chr   = str.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
 
-socket.connect()
+function generateRandAlphaNumStr(len, data) {
+  var rdmString = "";
+  for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
+  return  `${hashCode(data)}-${rdmString.substr(0, len)}`;
+}
+
+const randomNumber = max => Math.round(max * (Math.random() + 1));
+
+socket.connect({ user_id: randomNumber(99999999999999999) });
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+// let RoomChannel = socket.channel("rooms:lobby", {})
+let GithubChannel = socket.channel("github:lobby", {});
+
+const createEvent = (type, ack, response) => {
+  const { data } = response;
+  const reply = { data, ack };
+  return [`github:${type}`, JSON.stringify(reply)];
+};
+
+const pushToChannel = (type, ack) => (error, response) => {
+  if (!error) {
+    const { data } = response;
+    const data_response = { data, ack };
+    GithubChannel.push(`github:${type}`, JSON.stringify(data_response));
+  } else {
+    console.log("Error caught!!");
+  }
+};
+
+const liveData = $("#live-data");
+const socketName = liveData.data("socket-name");
+
+const hasProject = body => {
+  if (body.number && body.team_name) {
+      return socketName === `${body.type}-${body.team_name}-${body.number}`;
+  } else {
+    return false;
+  }
+};
+
+GithubChannel.on("message", ({ body }) => {
+  if (hasProject(body) || socketName === body.type) {
+    const ack = generateRandAlphaNumStr(40, JSON.stringify(body.query));
+    const pushMessage = pushToChannel(body.type, ack);
+    const request = client({ token: body.token, query: body.query }, pushMessage);
+
+    GithubChannel.on(ack, payload => {
+      liveData.html(payload.html);
+    });
+  }
+});
+
+GithubChannel.on("refresh_issues", () => {
+  if ($("#refresh_issues").length >= 1 ) {
+    window.location.href = window.location.href;
+  }
+});
+
+socket.onConnClose(() => { console.log("Closed connection socket") });
+socket.onClose(() => {
+  console.log("Closed connection socket")
+});
+
+GithubChannel.join()
+  .receive("ok", resp => { console.log('socket connected.')})
+  .receive("error", resp => { console.log("unable to join.") })
 
 export default socket

@@ -1,0 +1,8 @@
+<%= for project <- @projects do %>
+  <%= if length(project["columns"]["nodes"]) >= 1 do %>
+    <%= render "project.html", project: project %>
+  <%= end %>
+<%= end %>
+<div class="jumbotron">
+  <h1 class="display-1 text-center">Projects Board</h1>
+</div>

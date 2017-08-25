@@ -1,0 +1,7 @@
+<div class="d-flex">
+  <%= for assignee <- @assignees do %>
+    <div class="p-2 drop-opacity">
+      <img class="rounded" width="100px;" src='<%= assignee["avatarUrl"] %>' />
+    </div>
+  <%= end %>
+</div>

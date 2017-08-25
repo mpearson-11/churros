@@ -1,16 +1,10 @@
-<div class="row">
-  <div class="col-md-6 mt-2 text-center">
-    <h2>Labelled</h2>
+<%= if @labelled != nil && @unlabelled != nil do %>
+  <div class="row">
+    <div class="col-md-6 mt-2">
+      <%= render "issues.html", labelled: true, issues: @labelled, conn: @conn %>
+    </div>
+    <div class="col-md-6 mt-2">
+      <%= render "issues.html", labelled: false, issues: @unlabelled, conn: @conn %>
+    </div>
   </div>
-  <div class="col-md-6 mt-2 text-center">
-    <h2>Unlabelled</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6 mt-2">
-    <%= render "issues.html", labelled: true, issues: @labelled, conn: @conn %>
-  </div>
-  <div class="col-md-6 mt-2">
-    <%= render "issues.html", labelled: false, issues: @unlabelled, conn: @conn %>
-  </div>
-</div>
+<%= end %>
