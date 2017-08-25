@@ -2,7 +2,7 @@
   <%= if Map.has_key?(card, "content") do %>
     <div class="card mt-2 mb-1">
       <div class="card-header">
-        <strong>#<%= card |> content |> number %></strong>
+        <strong><%= card |> content |> number %></strong>
       </div>
       <div class="card-block">
         <small><%= card |> content |> title %></small>
