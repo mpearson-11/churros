@@ -1,5 +1,5 @@
 <%= if @labelled == true do %>
-  <div class="card-columns" id="refresh_issues">
+  <div class="card-columns">
     <%= for issue <- @issues do %>
       <%= if Map.has_key?(issue, "assignees") do %>
           <%= render "issue_labelled.html", issue: issue, conn: @conn %>

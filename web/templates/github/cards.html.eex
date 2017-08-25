@@ -4,7 +4,7 @@
       <div class="card-header">
         <strong><%= card |> content |> number %></strong>
       </div>
-      <div class="card-block">
+      <div class="card-body">
         <small><%= card |> content |> title %></small>
         <p class="card-text">
           <%= if card["content"]["__typename"] == "PullRequest" do %>

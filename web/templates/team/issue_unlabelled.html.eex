@@ -3,7 +3,7 @@
     <p class="h5"><%= @issue["number"] %>
     </p>
   </div>
-  <div class="card-block">
+  <div class="card-body">
     <blockquote class="card-blockquote">
       <%= for assignee <- @issue["assignees"] do %>
         <%= render "assignee.html", assignee: assignee, conn: @conn %>

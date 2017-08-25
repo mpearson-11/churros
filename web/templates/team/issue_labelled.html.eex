@@ -3,7 +3,7 @@
     <span class="h4"><%= @issue["number"] %></span>
     <%= render "labels.html", issue: @issue %>
   </div>
-  <div class="card-block">
+  <div class="card-body">
     <blockquote class="card-blockquote">
       <%= for assignee <- @issue["assignees"] do %>
         <%= render "assignee.html", assignee: assignee, conn: @conn %>
