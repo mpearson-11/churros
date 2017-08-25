@@ -39,7 +39,7 @@ defmodule Churros.GithubBoardTasks do
 
   def work_time do
     time = Application.get_env(:churros, :work_timer) || 20
-    time |> seconds
+    time * 1000
   end
 
   defp work_tasks do
