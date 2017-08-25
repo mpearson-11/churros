@@ -2,7 +2,7 @@
   <%= if length(column["cards"]["nodes"]) >= 1 do %>
     <div class="col custom-border">
       <div class="alert" role="alert">
-        <small class="font-weight-bold"><%= column["name"] %></small>
+        <h3 class="font-weight-bold"><%= column["name"] %></h3>
       </div>
       <%= render "cards.html", cards: column["cards"]["nodes"] %>
     </div>
