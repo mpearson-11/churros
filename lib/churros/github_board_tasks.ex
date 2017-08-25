@@ -22,7 +22,7 @@ defmodule Churros.GithubBoardTasks do
     "#{(number / 1000) / 60} minutes"
   end
   defp enabled_boards do
-    ["14", "21"]
+    ["14", "21", "23"]
   end
 
   def init(_) do
