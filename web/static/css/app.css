@@ -39,3 +39,7 @@
     left: 40%;
     position: absolute;
 }
+.tiny {
+    font-size: 13pt;
+    padding-top: 8px;
+}

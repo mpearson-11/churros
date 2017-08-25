@@ -42,12 +42,18 @@ defmodule Churros.TeamController do
     organisation = team(:org)
   
     team_ = GitHub.organisation_team(id, @client)
-    issues_ = filter_issues(GitHub.issues_open(organisation, name, @client))
+    github_issues = GitHub.issues_open(organisation, name, @client)
 
-    render conn, "index.html",
-      team: team_,
-      labelled: labelled_issues(issues_),
-      unlabelled: unlabelled_issues(issues_)
+    if github_issues != nil do
+      issues_ = filter_issues(GitHub.issues_open(organisation, name, @client))
+
+      render conn, "index.html",
+        team: team_,
+        labelled: labelled_issues(issues_),
+        unlabelled: unlabelled_issues(issues_)
+    else
+      render conn, "index.html", team: team_, labelled: nil, unlabelled: nil
+    end
   end
 end
 
