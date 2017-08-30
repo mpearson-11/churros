@@ -1,10 +1,11 @@
+<hr />
 <div class="row rounded bg-faded">
   <div class="col-12 mt-2 mb-2">
     <div class="container-fluid">
       <div class="row">
         <%= for column <- @project["columns"]["nodes"] do %>
           <%= if length(column["cards"]["nodes"]) >= 1 do %>
-            <div class="col mt-1">
+            <div class="col mt-3">
               <h3><%= column["name"] %></h3>
               <hr />
               <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]) %>

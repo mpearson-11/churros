@@ -69,25 +69,14 @@ const activateWatchedCard = (card) => {
       card.removeClass('text-white');
       card.removeClass('bg-danger');
     }
-  }, 500);
+  }, 750);
 };
 
 const loadWatchedData = () => {
   if (liveData.data("socket-watching") && liveData.data("socket-watching") !== 'false') {
-    liveWatchedData.html("<h3>Watching PR's</h3><hr />");
-
     const watching = liveData.data("socket-watching").split(',');
     watching.forEach(watch_number => {
-      const card = $(`#card-${watch_number}`);
-      activateWatchedCard(card);
-
-      liveWatchedData.append(`
-        <div class="card">
-          <div class="card-body">
-            <h3>#${watch_number}</h3>
-          </div>
-        </div>
-      `);
+      activateWatchedCard($(`#card-${watch_number}`));
     });
   }
 };
