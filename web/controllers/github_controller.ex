@@ -68,22 +68,13 @@ defmodule Churros.GithubController do
   end
 
   def graphql_watch_repo(conn, %{"repo" => repo, "project_number" => project_number, "watching" => watching }) do
-    IO.inspect("HIT HERE")
     render conn, 
       Churros.LayoutView, 
       "graphql_watched_repo.html",
       id: "watch-repo-#{repo}-#{project_number}",
       repo: repo,
+      number: project_number,
       watching: watching
-  end
-
-  def graphql_watch_repo(conn, %{"repo" => repo, "project_number" => project_number }) do
-    render conn,
-      Churros.LayoutView,
-      "graphql_watched_repo.html",
-      id: "watch-repo-#{repo}-#{project_number}",
-      repo: repo,
-      watching: nil
   end
 
   defp graphql_call(type, query) do

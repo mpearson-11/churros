@@ -49,16 +49,16 @@ const pushToChannel = (type, ack) => (error, response) => {
   }
 };
 
-const liveData = $("#live-data");
-const liveWatchedData = $("#live-watched-data");
-const socketName = liveData.data("socket-name");
-const hasProject = body => {
+const hasProject = (body, liveData) => {
+  const socketName = liveData.data("socket-name");
+
   if (body.number && body.team_name) {
       return socketName === `${body.type}-${body.team_name}-${body.number}`;
   } else {
     return false;
   }
 };
+
 const activateWatchedCard = (card) => {
   setInterval(() => {
     const className = card.attr("class");
@@ -73,16 +73,29 @@ const activateWatchedCard = (card) => {
 };
 
 const loadWatchedData = () => {
-  if (liveData.data("socket-watching") && liveData.data("socket-watching") !== 'false') {
-    const watching = liveData.data("socket-watching").split(',');
-    watching.forEach(watch_number => {
-      activateWatchedCard($(`#card-${watch_number}`));
-    });
+  const liveData = $("#live-data");
+
+  if (liveData.data().socketwatching && liveData.data("socketwatching") !== 'false') {
+    console.log('Found socket watcher!!');
+    const watchingElement = liveData.data("socketwatching").toString();
+  
+    if (watchingElement.indexOf(',') !== -1) {
+      const watching = watchingElement.split(',');
+
+      watching.forEach(watch_number => {
+        activateWatchedCard($(`#card-${watch_number}`));
+      });
+    } else {
+       activateWatchedCard($(`#card-${watchingElement}`));
+    }
   }
 };
 
 GithubChannel.on("message", ({ body }) => {
-  if (hasProject(body) || socketName === body.type) {
+  const liveData = $("#live-data");
+  const socketName = liveData.data('socket-name');
+
+  if (hasProject(body, liveData) || socketName === body.type) {
     const ack = generateRandAlphaNumStr(40, JSON.stringify(body.query));
     const pushMessage = pushToChannel(body.type, ack);
     const request = client({ token: body.token, query: body.query }, pushMessage);

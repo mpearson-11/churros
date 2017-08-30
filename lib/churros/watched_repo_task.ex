@@ -50,7 +50,7 @@ defmodule Churros.WatchedRepoTask do
   end
 
   def handle_info(:work, _) do
-    Logger.info "\nWatched Repo Task: repository_project(team, number), every: #{seconds(work_time(), :converted)}"
+    Logger.info "\nWatched Repo Task: watched_project, every: #{seconds(work_time(), :converted)}"
     work_tasks() # Private function work task
     Process.send_after(self(), :work, work_time())
     {:noreply, work_time()}
