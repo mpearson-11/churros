@@ -2,7 +2,7 @@
   <%= if length(column["cards"]["nodes"]) >= 1 do %>
     <div class="col">
       <div class="alert alert-danger" role="alert">
-        <p class="h5"><%= column["name"] %></p>
+        <%= column["name"] %>
       </div>
       <%= render "cards.html", cards: column["cards"]["nodes"] %>
     </div>

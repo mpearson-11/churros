@@ -1,21 +1,12 @@
 <%= for project <- @projects do %>
   <%= if length(project["columns"]["nodes"]) >= 1 do %>
-    <div class="row rounded bg-faded">
-      <div class="col-12 mt-2 mb-2">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="custom-title"> 
-                <%= project["name"] %> - <%= project["number"] %>
-              </div>
-              <%= render "assignees.html", assignees: filter_assignees(project) %>
-            </div>
-          </div>
+    <div class="row rounded border border-light">
+      <div class="col-10 mt-2 mb-2">
+        <div class="custom-title"> 
+          <%= project["name"] %> - <%= project["number"] %>
         </div>
+        <%= render "assignees.html", assignees: filter_assignees(project) %>
       </div>
     </div>
   <%= end %>
 <%= end %>
-<div class="jumbotron">
-  <h1 class="display-1 text-center">Projects Board</h1>
-</div>
