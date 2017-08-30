@@ -39,6 +39,10 @@ defmodule Churros.Router do
     get "/project/:number", GithubController, :graphql_project
     get "/test-projects", GithubController, :graphql_projects_test
   end
+  scope "/watch-repo", Churros do
+    pipe_through :browser # Use the default browser stack
+    get "/:repo/:project_number", GithubController, :graphql_watch_repo
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", Churros do

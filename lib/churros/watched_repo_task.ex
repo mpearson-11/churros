@@ -1,4 +1,4 @@
-defmodule Churros.GithubTask do
+defmodule Churros.WatchedRepoTask do
   @moduledoc """
   GithubTask calls repository_projects function for GithubController, every 3 minutes
   and the console will log out how long before the function runs again.
@@ -21,23 +21,15 @@ defmodule Churros.GithubTask do
   defp minutes(number, :converted) do
     "#{(number / 1000) / 60} minutes"
   end
+  defp enabled_projects do
+    ["2"]
+  end
 
   def init(_) do
     # Task starter
     start_after = start_work_time()
     Process.send_after(self(), :work, start_after)
-    Process.send_after(self(), :work_2, (start_after - 1))
     {:ok, work_time()}
-  end
-
-  def work_time do
-    time = Application.get_env(:churros, :work_timer) || (24 * 60)
-    time |> minutes
-  end
-
-  def work_time2 do
-    time = Application.get_env(:churros, :work_timer) || 5
-    time |> minutes
   end
 
   def start_work_time do
@@ -45,22 +37,21 @@ defmodule Churros.GithubTask do
     time |> minutes
   end
 
-  defp work_task() do
-    Churros.GithubController.repository_projects()
+  def work_time do
+    time = Application.get_env(:churros, :work_timer) || 45
+    time * 1000
   end
 
-  def handle_info(:work_2, state) do
-    Logger.info "Github Issues Task: refresh_issues, every: #{minutes(work_time2(), :converted)}"
-
-    Churros.Endpoint.broadcast!("github:lobby", "refresh_issues", %{})
-    Process.send_after(self(), :work_2, work_time2())
-    {:noreply, state}
+  defp work_tasks do
+    watched_repo = Application.get_env(:churros, :watched_repo)
+    Enum.each(enabled_projects, fn(project) ->
+      Churros.GithubController.watched_project(watched_repo, project)
+    end)
   end
 
   def handle_info(:work, _) do
-    Logger.info "Github Task: repository_projects, every: #{minutes(work_time(), :converted)}"
-
-    work_task() # Private function work task
+    Logger.info "\nWatched Repo Task: repository_project(team, number), every: #{seconds(work_time(), :converted)}"
+    work_tasks() # Private function work task
     Process.send_after(self(), :work, work_time())
     {:noreply, work_time()}
   end

@@ -121,6 +121,14 @@ defmodule Churros.GithubChannel do
     {:noreply, socket}
   end
 
+  def handle_in("github:watch-repo", params, socket) do
+    data = process(params, :project)
+    html = Phoenix.View.render_to_string(Churros.GithubView, "watched_repo.html", project: data)
+
+    broadcast!(socket, process(params)["ack"], %{ html: html})
+    {:noreply, socket}
+  end
+
   def handle_in("github:issues", params, socket) do
     data = process(params, :issues)
     html = Phoenix.View.render_to_string(Churros.GithubView, "issues.html", issues: data)

@@ -50,13 +50,45 @@ const pushToChannel = (type, ack) => (error, response) => {
 };
 
 const liveData = $("#live-data");
+const liveWatchedData = $("#live-watched-data");
 const socketName = liveData.data("socket-name");
-
 const hasProject = body => {
   if (body.number && body.team_name) {
       return socketName === `${body.type}-${body.team_name}-${body.number}`;
   } else {
     return false;
+  }
+};
+const activateWatchedCard = (card) => {
+  setInterval(() => {
+    const className = card.attr("class");
+    if (className.indexOf('bg-primary') === -1) {
+      card.removeClass('bg-danger');
+      card.addClass('bg-primary')
+    } else {
+      card.removeClass('bg-primary');
+      card.addClass('bg-danger')
+    }
+  }, 500);
+};
+
+const loadWatchedData = () => {
+  if (liveData.data("socket-watching") && liveData.data("socket-watching") !== 'false') {
+    liveWatchedData.empty();
+
+    const watching = liveData.data("socket-watching").split(',');
+    watching.forEach(watch_number => {
+      const card = $(`#card-${watch_number}`);
+      activateWatchedCard(card);
+
+      liveWatchedData.append(`
+        <div class="card">
+          <div class="card-body">
+            <h1>#${watch_number}</h1>
+          </div>
+        </div>
+      `);
+    });
   }
 };
 
@@ -68,6 +100,10 @@ GithubChannel.on("message", ({ body }) => {
 
     GithubChannel.on(ack, payload => {
       liveData.html(payload.html);
+
+      setTimeout(() => {
+        loadWatchedData();
+      }, 250);
     });
   }
 });

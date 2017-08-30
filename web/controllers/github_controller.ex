@@ -30,20 +30,21 @@ defmodule Churros.GithubController do
   end
 
   def repository_projects do
-    Logger.info "Loading Repository Projects ===>"
-
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
     "projects" |> graphql_call(UtilController.projects(org, team_name))
     true
   end
+  
+  def watched_project(team_name, number) do
+    org = Application.get_env(:churros, :organisation)
+    graphql_call(team_name, number, "watch-repo", UtilController.watched_project(org, team_name, number))
+    true
+  end
 
   def repository_project(number) do
-    Logger.info "Loading Repository Project ===>"
-
     org = Application.get_env(:churros, :organisation)
     team_name = Application.get_env(:churros, :team_name)
-
     graphql_call(team_name, number, "project", UtilController.project(org, team_name, number))
     true
   end
@@ -64,6 +65,25 @@ defmodule Churros.GithubController do
   def graphql_project(conn, %{"number" => number}) do
     team_name = Application.get_env(:churros, :team_name)
     render conn, Churros.LayoutView, "graphql_project.html", id: "project-#{team_name}-#{number}", project: "team: #{team_name}, project number: #{number}"
+  end
+
+  def graphql_watch_repo(conn, %{"repo" => repo, "project_number" => project_number, "watching" => watching }) do
+    IO.inspect("HIT HERE")
+    render conn, 
+      Churros.LayoutView, 
+      "graphql_watched_repo.html",
+      id: "watch-repo-#{repo}-#{project_number}",
+      repo: repo,
+      watching: watching
+  end
+
+  def graphql_watch_repo(conn, %{"repo" => repo, "project_number" => project_number }) do
+    render conn,
+      Churros.LayoutView,
+      "graphql_watched_repo.html",
+      id: "watch-repo-#{repo}-#{project_number}",
+      repo: repo,
+      watching: nil
   end
 
   defp graphql_call(type, query) do
