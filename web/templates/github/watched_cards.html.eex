@@ -2,10 +2,10 @@
   <%= if Map.has_key?(card, "content") do %>
     <div class="card mt-2 mb-1">
       <div class="card-header text-white bg-primary" data-socket-card-index='<%= index %>' id='card-<%= card |> content |> number %>'>
-        <strong><%= card |> content |> number %></strong>
+        <h6><%= card |> content |> number %></h6>
       </div>
       <div class="card-body">
-        <h3><%= card |> content |> title %></h3>
+        <h5><%= card |> content |> title %></h5>
       </div>
     </div>
   <%= end %>
