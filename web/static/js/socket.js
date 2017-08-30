@@ -63,8 +63,10 @@ const activateWatchedCard = (card) => {
   setInterval(() => {
     const className = card.attr("class");
     if (className.indexOf('bg-danger') === -1) {
+      card.addClass('text-white');
       card.addClass('bg-danger');
     } else {
+      card.removeClass('text-white');
       card.removeClass('bg-danger');
     }
   }, 500);
