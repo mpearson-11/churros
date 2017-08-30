@@ -30,6 +30,14 @@ body {
     left: 65%;
     position: absolute;
 }
+.custom-title-2 {
+    font-family: Courier New, Courier, monospace;
+    z-index: 999;
+    font-size: 28px;
+    top: 38px;
+    left: 68%;
+    position: absolute;
+}
 .truncate {
   width: 130px;
   white-space: nowrap;

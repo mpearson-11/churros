@@ -66,7 +66,11 @@ defmodule Churros.Github.TestController do
         create_assignee("Max 1"),
         create_assignee("Max 2"),
         create_assignee("Max 3"),
-        create_assignee("Max 4")
+        create_assignee("Max 4"),
+        create_assignee("Max 5"),
+        create_assignee("Max 6"),
+        create_assignee("Max 7"),
+        create_assignee("Max 8")
       ]
     }
   end

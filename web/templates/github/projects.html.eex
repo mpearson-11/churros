@@ -2,7 +2,7 @@
   <%= if length(project["columns"]["nodes"]) >= 1 do %>
     <div class="row rounded border border-light">
       <div class="col-10 mt-2 mb-2">
-        <div class="custom-title"> 
+        <div class="custom-title-2"> 
           <%= project["name"] %> - <%= project["number"] %>
         </div>
         <%= render "assignees.html", assignees: filter_assignees(project) %>
