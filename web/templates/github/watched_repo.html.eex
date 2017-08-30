@@ -5,9 +5,8 @@
         <%= for column <- @project["columns"]["nodes"] do %>
           <%= if length(column["cards"]["nodes"]) >= 1 do %>
             <div class="col">
-              <div class="alert alert-danger" role="alert">
-                <%= column["name"] %>
-              </div>
+              <h3><%= column["name"] %></h3>
+              <hr />
               <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]) %>
             </div>
           <%= end %>

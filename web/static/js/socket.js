@@ -62,19 +62,17 @@ const hasProject = body => {
 const activateWatchedCard = (card) => {
   setInterval(() => {
     const className = card.attr("class");
-    if (className.indexOf('bg-primary') === -1) {
-      card.removeClass('bg-danger');
-      card.addClass('bg-primary')
+    if (className.indexOf('bg-danger') === -1) {
+      card.addClass('bg-danger');
     } else {
-      card.removeClass('bg-primary');
-      card.addClass('bg-danger')
+      card.removeClass('bg-danger');
     }
   }, 500);
 };
 
 const loadWatchedData = () => {
   if (liveData.data("socket-watching") && liveData.data("socket-watching") !== 'false') {
-    liveWatchedData.empty();
+    liveWatchedData.html("<h3>Watching PR's</h3><hr />");
 
     const watching = liveData.data("socket-watching").split(',');
     watching.forEach(watch_number => {
