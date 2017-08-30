@@ -84,7 +84,7 @@ const loadWatchedData = () => {
       liveWatchedData.append(`
         <div class="card">
           <div class="card-body">
-            <h1>#${watch_number}</h1>
+            <h3>#${watch_number}</h3>
           </div>
         </div>
       `);
