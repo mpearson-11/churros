@@ -42,6 +42,7 @@ defmodule Churros.GithubControllerTest do
   use ExUnit.Case, async: false
   use Churros.ConnCase, async: true
   import Mock
+  import Snapshot
 
   @mock (
     Churros.GithubControllerTest.Mock
@@ -101,18 +102,38 @@ defmodule Churros.GithubControllerTest do
   ## Partial Render Tests
   test "renders graphql_projects.html with router /graphql/test-projects", %{conn: conn} do
     conn = get conn, "/graphql/test-projects"
-    assert html_response(conn, 200) =~ "Test Project - 1"
+    snapshot(%{
+      "file_name" => "graphql_projects",
+      "dir1" => "graphql",
+      "dir2" => "test-projects",
+      "html" => html_response(conn, 200)
+    })
   end
   test "renders graphql_projects.html with router /graphql/projects", %{conn: conn} do
     conn = get conn, "/graphql/projects"
-    assert html_response(conn, 200) =~ "Waiting in Lobby for projects"
+    snapshot(%{
+      "file_name" => "graphql_projects",
+      "dir1" => "graphql",
+      "dir2" => "projects",
+      "html" => html_response(conn, 200)
+    })
   end
   test "renders graphql_project.html with router /graphql/project/number", %{conn: conn} do
     conn = get conn, "/graphql/project/hello-world"
-    assert html_response(conn, 200) =~ "Waiting in Lobby for team: TEST_TEAM_NAME, project number: hello-world"
+    snapshot(%{
+      "file_name" => "graphql_project",
+      "dir1" => "graphql",
+      "dir2" => "project",
+      "html" => html_response(conn, 200)
+    })
   end
   test "renders graphql_watched_repo.html with router /watch-repo/project/number?watching=", %{conn: conn} do
     conn = get conn, "/watch-repo/test-project/1?watching=4145"
-    assert html_response(conn, 200) =~ "Watching repository issues for: test-project on project: 1"
+    snapshot(%{
+      "file_name" => "graphql_watched_repo",
+      "dir1" => "watch-repo",
+      "dir2" => "test-project",
+      "html" => html_response(conn, 200)
+    })
   end
 end

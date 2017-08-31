@@ -14,6 +14,7 @@ defmodule Churros.TeamControllerTest do
   use Churros.ConnCase, async: true
 
   import Mock
+  import Snapshot
 
     # team_ = GitHub.organisation_team(id, @client)
     # github_issues = GitHub.issues_open(organisation, name, @client)
@@ -24,7 +25,12 @@ defmodule Churros.TeamControllerTest do
       {Churros.Github.MainController, [], [issues_open: fn(org, name, client) -> [] end]}
     ]) do
       conn = get conn, "/team/board"
-      assert html_response(conn, 200) =~ "refresh_issues"
+      snapshot(%{
+        "file_name" => "index",
+        "dir1" => "team",
+        "dir2" => "board",
+        "html" => html_response(conn, 200)
+      })
     end
   end
 end
