@@ -29,8 +29,8 @@ defmodule Churros.Github.MainController do
   end
   def issues_open(owner, name, client) do
     issues = Tentacat.Issues.filter(owner, name, %{"status" => "open", "filter" => "assigned" }, client)
-    case {issues} do
-      {:error, %HTTPoison.Error{id: nil, reason: :timeout}} -> nil
+    case issues do
+      {:error, %HTTPoison.Error{id: _id, reason: :timeout}} -> nil
       _ -> issues
     end
   end

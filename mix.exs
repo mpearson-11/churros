@@ -47,6 +47,7 @@ defmodule Churros.Mixfile do
      {:tentacat, "~> 0.5"},
      {:json, "~> 1.0"},
      {:httpotion, "~> 3.0.2"},
-     {:earmark, "~> 1.1"}]
+     {:earmark, "~> 1.1"},
+     {:mock, "~> 0.2.0", only: :test}]
   end
 end

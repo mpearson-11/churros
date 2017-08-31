@@ -19,7 +19,7 @@ defmodule Churros.TeamController do
     Application.get_env(:churros, :organisation)
   end
   
-  def filter_issues(issues) do
+  defp filter_issues(issues) do
     Enum.filter(issues, fn(i) -> 
       i["assignee"] !== nil && i["assignees"] !== []
     end)

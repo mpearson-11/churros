@@ -12,7 +12,6 @@ defmodule Churros.OrgController do
   def org_team(conn, %{"id" => id}) do
     org_team = Github.organisation_team(id, @client)
     org_team_members = Github.organisation_team_members(id, @client)
-    IO.inspect(org_team_members)
     render conn, "org_team_info.html", team: org_team, members: org_team_members
   end
 end
