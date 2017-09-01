@@ -1,40 +1,12 @@
 defmodule Snapshot do
-  def path do
-    "./test/snapshots/routes"
-  end
   def path_creator(directories) do
-    "#{path}/#{Enum.join(directories, "/")}"
+    "./test/snapshots/routes/#{Enum.join(directories, "/")}"
   end
-  def snapshot(%{
-    "file_name" => file_name,
-    "dir1" => dir1,
-    "html" => html
-  }) do
-    directory = path_creator([dir1])
-    File.mkdir(directory)
-    File.write("#{directory}/#{file_name}.html", html, [:raw])
+  def write_file(directory, file_name, html) do
+    File.mkdir_p!(directory)
+    File.write!("#{directory}/#{file_name}.html", html, [:raw])
   end
-
-  def snapshot(%{
-    "file_name" => file_name,
-    "dir1" => dir1,
-    "dir2" => dir2,
-    "html" => html
-  }) do
-    directory = path_creator([dir1, dir2])
-    File.mkdir(directory)
-    File.write("#{directory}/#{file_name}.html", html, [:raw])
-  end
-  
-  def snapshot(%{
-    "file_name" => file_name,
-    "dir1" => dir1,
-    "dir2" => dir2,
-    "dir3" => dir3,
-    "html" => html
-  }) do
-    directory = path_creator([dir1, dir2, dir3])
-    File.mkdir(directory)
-    File.write("#{directory}/#{file_name}.html", html, [:raw])
+  def snapshot(%{"file_name" => file_name, "path" => path, "html" => html }) do
+    write_file(path_creator(path), file_name, html)
   end
 end

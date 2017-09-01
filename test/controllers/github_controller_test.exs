@@ -104,8 +104,7 @@ defmodule Churros.GithubControllerTest do
     conn = get conn, "/graphql/test-projects"
     snapshot(%{
       "file_name" => "graphql_projects",
-      "dir1" => "graphql",
-      "dir2" => "test-projects",
+      "path" => ["graphql","test-projects"],
       "html" => html_response(conn, 200)
     })
   end
@@ -113,8 +112,7 @@ defmodule Churros.GithubControllerTest do
     conn = get conn, "/graphql/projects"
     snapshot(%{
       "file_name" => "graphql_projects",
-      "dir1" => "graphql",
-      "dir2" => "projects",
+      "path" => ["graphql","projects"],
       "html" => html_response(conn, 200)
     })
   end
@@ -122,8 +120,7 @@ defmodule Churros.GithubControllerTest do
     conn = get conn, "/graphql/project/hello-world"
     snapshot(%{
       "file_name" => "graphql_project",
-      "dir1" => "graphql",
-      "dir2" => "project",
+      "path" => ["graphql","project"],
       "html" => html_response(conn, 200)
     })
   end
@@ -131,8 +128,7 @@ defmodule Churros.GithubControllerTest do
     conn = get conn, "/watch-repo/test-project/1?watching=4145"
     snapshot(%{
       "file_name" => "graphql_watched_repo",
-      "dir1" => "watch-repo",
-      "dir2" => "test-project",
+      "path" => ["watch-repo", "test-project"],
       "html" => html_response(conn, 200)
     })
   end

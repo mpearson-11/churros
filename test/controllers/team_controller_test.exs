@@ -27,8 +27,7 @@ defmodule Churros.TeamControllerTest do
       conn = get conn, "/team/board"
       snapshot(%{
         "file_name" => "index",
-        "dir1" => "team",
-        "dir2" => "board",
+        "path" => ["team", "board"],
         "html" => html_response(conn, 200)
       })
     end
