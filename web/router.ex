@@ -44,6 +44,6 @@ defmodule Churros.Router do
 
   scope "/watch-repo", Churros do
     pipe_through :browser # Use the default browser stack
-    get "/:repo/:project_number", GithubController, :graphql_watch_repo
+    get "/:repo/:number", GithubController, :graphql_watch_repo
   end
 end

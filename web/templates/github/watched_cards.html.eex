@@ -1,7 +1,7 @@
 <%= for {card, index} <- @cards do %>
   <%= if Map.has_key?(card, "content") do %>
     <div class="card mt-2 mb-1">
-      <div class="card-header" data-socket-card-index='<%= index %>' id='card-<%= card |> content |> number %>'>
+      <div class="card-header" data-socket-card-activated='<%= has_team_member(card, @team) %>' data-socket-card-index='<%= index %>' id='card-<%= card |> content |> number %>'>
         <div class="h4"><%= card |> content |> number %></div>
       </div>
       <div class="card-body">

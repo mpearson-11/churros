@@ -6,6 +6,8 @@ defmodule Churros.GithubChannel do
     params
   end
 
+  @client(Tentacat.Client.new(%{access_token: Application.get_env(:churros, :access_token)}))
+
   #Util functions
   defp data(body) do
     body["data"]
@@ -123,8 +125,9 @@ defmodule Churros.GithubChannel do
 
   def handle_in("github:watch-repo", params, socket) do
     data = process(params, :project)
-    html = Phoenix.View.render_to_string(Churros.GithubView, "watched_repo.html", project: data)
-
+    team_id = Application.get_env(:churros, :team_id)
+    team = Churros.Github.MainController.organisation_team_members(team_id, @client)
+    html = Phoenix.View.render_to_string(Churros.GithubView, "watched_repo.html", project: data, team: team)
     broadcast!(socket, process(params)["ack"], %{ html: html})
     {:noreply, socket}
   end

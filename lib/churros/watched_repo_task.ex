@@ -38,7 +38,7 @@ defmodule Churros.WatchedRepoTask do
   end
 
   def work_time do
-    time = Application.get_env(:churros, :work_timer) || 45
+    time = Application.get_env(:churros, :watched_repo_timer) || 45
     time * 1000
   end
 

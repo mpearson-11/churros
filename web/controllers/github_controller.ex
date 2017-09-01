@@ -76,14 +76,13 @@ defmodule Churros.GithubController do
     render conn, Churros.LayoutView, "graphql_project.html", id: "project-#{team_name}-#{number}", project: "team: #{team_name}, project number: #{number}"
   end
 
-  def graphql_watch_repo(conn, %{"repo" => repo, "project_number" => project_number, "watching" => watching }) do
+  def graphql_watch_repo(conn, %{"repo" => repo, "number" => number }) do
     render conn, 
       Churros.LayoutView,
       "graphql_watched_repo.html",
-      id: "watch-repo-#{repo}-#{project_number}",
+      id: "watch-repo-#{repo}-#{number}",
       repo: repo,
-      number: project_number,
-      watching: watching
+      number: number
   end
   #------------------------------------------------------------------------
 end

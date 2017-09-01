@@ -68,6 +68,16 @@ defmodule Churros.GithubView do
     end)
   end
 
+  def has_team_member(card, team) do
+    assignees = filter_card(card)
+    has_member = length(Enum.filter(team, fn(member) -> 
+      Enum.find(assignees, fn(assignee) -> 
+        member["login"] == assignee["login"]
+      end) || nil
+    end)) > 0
+    has_member && "true" || "false"
+  end
+
   def filter_assignees(project) do
     # ------------------------------------------------------ #
     # Cleaned up                                             #
@@ -79,23 +89,5 @@ defmodule Churros.GithubView do
     |> nodes
     |> filter_columns
     |> Enum.uniq
-  end
-
-  def get_projects do
-    # Uncomment to start task on page load
-    Task.start(fn ->
-      Process.sleep(3000)
-      Churros.GithubController.repository_projects()
-    end)
-    nil
-  end
-
-  def get_project(number) do
-    # Uncomment to start task on page load
-    Task.start(fn ->
-      Process.sleep(3000)
-      Churros.GithubController.repository_project(number)
-    end)
-    nil
   end
 end

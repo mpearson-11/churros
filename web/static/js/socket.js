@@ -59,7 +59,8 @@ const hasProject = (body, liveData) => {
   }
 };
 
-const activateWatchedCard = (card) => {
+const activateWatchedCard = (cardElement) => {
+  const card = $(cardElement);
   setInterval(() => {
     const className = card.attr("class");
     if (className.indexOf('bg-danger') === -1) {
@@ -74,20 +75,13 @@ const activateWatchedCard = (card) => {
 
 const loadWatchedData = () => {
   const liveData = $("#live-data");
-
-  if (liveData.data().socketwatching && liveData.data("socketwatching") !== 'false') {
-    console.log('Found socket watcher!!');
-    const watchingElement = liveData.data("socketwatching").toString();
-  
-    if (watchingElement.indexOf(',') !== -1) {
-      const watching = watchingElement.split(',');
-
-      watching.forEach(watch_number => {
-        activateWatchedCard($(`#card-${watch_number}`));
-      });
-    } else {
-       activateWatchedCard($(`#card-${watchingElement}`));
-    }
+  const elements = $("[data-socket-card-activated]");
+  if (elements.length) {
+    elements.each((index, selectedElement) => {
+      if ($(selectedElement).data("socket-card-activated") === true) {
+        activateWatchedCard(selectedElement);
+      }
+    });
   }
 };
 
@@ -102,10 +96,11 @@ GithubChannel.on("message", ({ body }) => {
 
     GithubChannel.on(ack, payload => {
       liveData.html(payload.html);
-
-      setTimeout(() => {
-        loadWatchedData();
-      }, 250);
+      if ($("[data-project-watch]").length > 0) {
+        setTimeout(() => {
+            loadWatchedData();
+        }, 250);
+      }
     });
   }
 });

@@ -1,4 +1,4 @@
-<div id="live-data" data-socket-name='<%= @id %>' data-socketwatching='<%= @watching || "false" %>'>
+<div id="live-data" data-socket-name='<%= @id %>' data-project-watch="true">
   <div class="container">
     <div class="row mt-5 pt-5">
       <div class="col-10" >

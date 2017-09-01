@@ -12,7 +12,7 @@
             <div class="col mt-3">
               <div class="h4"><%= column["name"] %></div>
               <hr />
-              <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]) %>
+              <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
             </div>
           <%= end %>
         <%= end %>
