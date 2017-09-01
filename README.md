@@ -21,5 +21,11 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 To Run, first set your enivornment:
 
 `CHURROS_TOKEN=` (Private GITHUB AUTH TOKEN!!!)
+
 `CHURROS_TEAM_ID=` (GITHUB Team ID)
+
 `CHURROS_TEAM_NAME=` (ORGANISATION Team Name)
+
+`CHURROS_ORG_NAME=` (ORGANISATION NAME)
+
+`CHURROS_WATCHED_REPO=` (Watched repository name)
