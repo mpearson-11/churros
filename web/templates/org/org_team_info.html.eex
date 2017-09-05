@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="card-group">
+    <div class="card-columns">
       <%= for member <- @members do %>
         <%= render "org_team_member.html", member: member %>
       <%= end %>
