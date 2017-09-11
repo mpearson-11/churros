@@ -1,10 +1,20 @@
-<%= for column <- @columns do %>
-  <%= if length(column["cards"]["nodes"]) >= 1 do %>
-    <div class="col">
-      <div class="alert alert-danger" role="alert">
-        <%= column["name"] %>
-      </div>
-      <%= render "cards.html", cards: column["cards"]["nodes"] %>
-    </div>
-  <%= end %>
-<%= end %>
+<table class="c-table-simple">
+  <tr class="c-table-simple__row">
+    <%= for column <- @columns do %>
+      <%= if length(column["cards"]["nodes"]) >= 1 do %>
+        <td class="c-table-simple__cell">
+          <article class="c-tile c-tile--collapsable">
+            <div class="c-tile__content">
+              <div class="c-tile__body">
+                <p class="c-text-body u-margin-bottom-large"><%= column["name"] %></p>
+                <div class="o-layout">
+                  <%= render "cards.html", cards: column["cards"]["nodes"] %>
+                </div>
+              </div>
+            </div>
+          </article>
+        </td>
+      <%= end %>
+    <%= end %>
+  </tr>
+</table>

@@ -1,12 +1,22 @@
-<%= for project <- @projects do %>
-  <%= if length(project["columns"]["nodes"]) >= 1 do %>
-    <div class="row rounded border border-light">
-      <div class="col-10 mt-2 mb-2">
-        <div class="custom-title-2"> 
-          <%= project["name"] %> - <%= project["number"] %>
-        </div>
-        <%= render "assignees.html", assignees: filter_assignees(project) %>
-      </div>
-    </div>
-  <%= end %>
-<%= end %>
+<div class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large">
+  <div class="o-layout__item">
+    <%= for project <- @projects do %>
+      <%= if length(project["columns"]["nodes"]) >= 1 do %>
+        <article class="c-tile">
+          <div class="c-tile__content">
+            <div class="c-tile__body">
+              <div class="o-layout u-margin-left-small u-margin-right-small">
+                <div class="o-layout__item u-width-2/3">
+                  <%= render "assignees.html", assignees: filter_assignees(project) %>
+                </div>
+                <div class="o-layout__item u-width-1/3 u-vertical-align-center u-margin-top-large u-padding-top-large">
+                  <div class="c-heading-alpha"><%= project["name"] %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      <%= end %>
+    <%= end %>
+  </div>
+</div>

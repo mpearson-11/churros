@@ -1,12 +1,5 @@
-<div id="live-data" data-socket-name="projects">
-  <div class="container">
-    <div class="row mt-5 pt-5">
-      <div class="col-11">
-        <h1 class="display-4 mt-1">Waiting in Lobby for projects</h1>
-      </div>
-      <div class="col-1">
-        <span><div class="loading-spinner"></div></span>
-      </div>
-    </div>
+<div id="live-data" class="o-layout u-margin-top-large" data-socket-name="projects">
+  <div class="o-layout__item u-text-center">
+    <h1 class="c-heading-aplha">Waiting in Lobby for projects <strong class='c-spinner c-spinner--large u-margin-left-large' role='progressbar'>Loading…</strong></h1>
   </div>
 </div>

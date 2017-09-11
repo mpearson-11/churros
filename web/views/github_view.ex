@@ -1,6 +1,8 @@
 defmodule Churros.GithubView do
   use Churros.Web, :view
-
+  def has_note?(data) do
+    data["note"] || nil
+  end
   def number(data) do
     data["number"]
   end
@@ -9,6 +11,9 @@ defmodule Churros.GithubView do
   end
   def content(data) do
     data["content"]
+  end
+  def note(data) do
+    data["note"]
   end
   def assignees(data) do
     data["assignees"]

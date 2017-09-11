@@ -52,6 +52,7 @@ defmodule Churros.Github.UtilController do
                 name
                 cards(first: 20) {
                   nodes {
+                    note
                     content {
                       ... on PullRequest {
                         assignees(first: 10) {
@@ -92,6 +93,7 @@ defmodule Churros.Github.UtilController do
                 name
                 cards(first: 20) {
                   nodes {
+                    note
                     content {
                       ... on PullRequest {
                         assignees(first: 10) {
@@ -156,6 +158,7 @@ defmodule Churros.Github.UtilController do
                   name
                   cards(first: 20) {
                     nodes {
+                      note
                       content {
                         ... on PullRequest {
                           assignees(first: 10) {
