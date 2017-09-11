@@ -101,6 +101,12 @@ GithubChannel.on("message", ({ body }) => {
             loadWatchedData();
         }, 250);
       }
+
+      if (body.type === "project") {
+        setTimeout(() => {
+          $("#panel").addClass("is-open is-anim");
+        }, 1000);
+      }
     });
   }
 });

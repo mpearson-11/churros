@@ -1,18 +1,17 @@
-<div class="row rounded bg-faded">
-  <div class="col-12 mt-2 mb-2">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="custom-title"> 
-            <%= @project["name"] %> - <%= @project["number"] %>
-          </div>
-          <%= render "assignees.html", assignees: filter_assignees(@project) %>
+<div class="o-layout">
+  <div class="o-layout__item">
+    <article class="c-tile">
+      <div class="c-tile__content">
+        <div class="c-tile__body">
+          <h1 class="c-heading-alpha  u-margin-bottom-none"><%= @project["name"]%></h1>
         </div>
       </div>
-      <hr />
-      <div class="row">
-        <%= render "columns.html", columns: @project["columns"]["nodes"] %>
-      </div>
-    </div>
+    </article>
+  </div>
+  <div class="o-layout__item">
+    <%= render "assignees.html", assignees: filter_assignees(@project) %>
+  </div>
+  <div class="o-layout__item">
+    <%= render "columns.html", columns: @project["columns"]["nodes"] %>
   </div>
 </div>

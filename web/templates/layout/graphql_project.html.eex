@@ -1,12 +1,16 @@
-<div id="live-data" data-socket-name='<%= @id %>'>
-  <div class="container">
-    <div class="row mt-5 pt-5">
-      <div class="col-10">
-        <h2 class="mt-3">Waiting in Lobby for <%= @project %></h2>
+<div id="live-data" class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large" data-socket-name='<%= @id %>'>
+  <div class="o-layout__item u-text-center">
+    <h2 class="c-heading-bravo">Waiting in the Lobby <strong class='u-margin-left-large c-spinner  c-spinner--small' role='progressbar'>Loading…</strong></h2>
+  </div>
+  <hr class="c-divider" />
+  <div class="o-layout__item">
+    <article class="c-tile">
+      <div class="c-tile__content">
+        <div class="c-tile__body">
+          <h2 class="c-heading-delta u-margin-bottom-none">Team: <%= @team %></h2>
+          <h3 class="c-text-body">Project: <%= @project %></h3>
+        </div>
       </div>
-      <div class="col-2">
-        <span><div class="loading-spinner"></div></span>
-      </div>
-    </div>
+    </article>
   </div>
 </div>

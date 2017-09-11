@@ -1,22 +1,30 @@
-<div class="row">
-  <div class="col-12 text-center mt-2 mb-3 ml-2">
-    <h1>Watching: <%= @project["name"] %></h1>
-  </div>
-</div>
-<div class="row rounded bg-faded">
-  <div class="col-12 mt-2 mb-2">
-    <div class="container-fluid">
-      <div class="row">
-        <%= for column <- @project["columns"]["nodes"] do %>
-          <%= if length(column["cards"]["nodes"]) >= 1 do %>
-            <div class="col mt-3">
-              <div class="h4"><%= column["name"] %></div>
-              <hr />
-              <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
-            </div>
-          <%= end %>
-        <%= end %>
+<div class="o-layout">
+  <div class="o-layout__item">
+    <article class="c-tile">
+      <div class="c-tile__content">
+        <div class="c-tile__body">
+          <h1 class="c-heading-bravo u-text-center u-margin-bottom-none">Watching: <%= @project["name"]%></h1>
+        </div>
       </div>
-    </div>
+    </article>
+  </div>
+  <div class="o-layout__item">
+    <div class="o-layout">
+    <%= for column <- @project["columns"]["nodes"] do %>
+      <%= if length(column["cards"]["nodes"]) >= 1 do %>
+        <div class="o-layout__item u-width-1/3"
+          <article class="c-tile c-tile--collapsable">
+            <div class="c-tile__content">
+              <div class="c-tile__body">
+                <p class="c-heading-delta u-margin-bottom-small"><%= column["name"] %></p>
+                <div class="o-layout">
+                  <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      <%= end %>
+    <%= end %>
   </div>
 </div>
