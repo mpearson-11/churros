@@ -49,6 +49,7 @@ defmodule Churros.Mixfile do
      {:json, "~> 1.0"},
      {:httpotion, "~> 3.0.2"},
      {:earmark, "~> 1.1"},
+     {:benchfella, "~> 0.3.0"},
      {:mock, "~> 0.2.0", only: :test}]
   end
 end

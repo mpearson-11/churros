@@ -11,16 +11,6 @@ defmodule Churros.WatchedRepoTask do
     GenServer.start_link(__MODULE__, 0)
   end
 
-  defp seconds(number, :converted) do
-    "#{(number / 1000)} seconds"
-  end
-
-  defp minutes(number) do
-    number * 60 * 1000
-  end
-  defp minutes(number, :converted) do
-    "#{(number / 1000) / 60} minutes"
-  end
   defp enabled_projects do
     ["2"]
   end
@@ -33,13 +23,11 @@ defmodule Churros.WatchedRepoTask do
   end
 
   def start_work_time do
-    time = Application.get_env(:churros, :start_work_timer) || 1
-    time |> minutes
+    1 |> TimeUtility.minutes
   end
 
   def work_time do
-    time = Application.get_env(:churros, :watched_repo_timer) || 45
-    time * 1000
+    45 |> TimeUtility.seconds
   end
 
   defp work_tasks do
@@ -50,7 +38,7 @@ defmodule Churros.WatchedRepoTask do
   end
 
   def handle_info(:work, _) do
-    Logger.info "\nWatched Repo Task: watched_project, every: #{seconds(work_time(), :converted)}"
+    Logger.info "\nWatched Repo Task"
     work_tasks() # Private function work task
     Process.send_after(self(), :work, work_time())
     {:noreply, work_time()}

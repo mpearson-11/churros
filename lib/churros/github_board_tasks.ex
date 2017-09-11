@@ -10,36 +10,22 @@ defmodule Churros.GithubBoardTasks do
   def start_link do
     GenServer.start_link(__MODULE__, 0)
   end
-
-  defp seconds(number, :converted) do
-    "#{(number / 1000)} seconds"
-  end
-
-  defp minutes(number) do
-    number * 60 * 1000
-  end
-  defp minutes(number, :converted) do
-    "#{(number / 1000) / 60} minutes"
-  end
   defp enabled_boards do
     ["14", "21", "23"]
   end
 
   def init(_) do
     # Task starter
-    start_after = start_work_time()
-    Process.send_after(self(), :work, start_after)
+    Process.send_after(self(), :enabled_projects_task, start_work_time())
     {:ok, work_time()}
   end
 
   def start_work_time do
-    time = Application.get_env(:churros, :start_work_timer) || 1
-    time |> minutes
+    1 |> TimeUtility.minutes
   end
 
   def work_time do
-    time = Application.get_env(:churros, :work_timer) || 20
-    time * 1000
+    20 |> TimeUtility.seconds
   end
 
   defp work_tasks do
@@ -48,11 +34,12 @@ defmodule Churros.GithubBoardTasks do
     end)
   end
 
-  def handle_info(:work, _) do
-    Logger.info "\nGithub Task: repository_project, every: #{seconds(work_time(), :converted)}"
+  def handle_info(:enabled_projects_task, state) do
+    watched_boards = enabled_boards()
+    Logger.info "\nGithub Task, load projects: #{Enum.join(watched_boards)}"
 
     work_tasks() # Private function work task
-    Process.send_after(self(), :work, work_time())
-    {:noreply, work_time()}
+    Process.send_after(self(), :enabled_projects_task, work_time())
+    {:noreply, state}
   end
 end
