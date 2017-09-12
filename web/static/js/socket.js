@@ -63,12 +63,10 @@ const activateWatchedCard = (cardElement) => {
   const card = $(cardElement);
   setInterval(() => {
     const className = card.attr("class");
-    if (className.indexOf('bg-danger') === -1) {
-      card.addClass('text-white');
-      card.addClass('bg-danger');
+    if (className.indexOf('custom-box') === -1) {
+      card.addClass('custom-box');
     } else {
-      card.removeClass('text-white');
-      card.removeClass('bg-danger');
+      card.removeClass('custom-box');
     }
   }, 750);
 };

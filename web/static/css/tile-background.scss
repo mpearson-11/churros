@@ -1,0 +1,67 @@
+$mobile-pink: #ff2ce9;
+$mobile-red: #dc0000;
+$mobile-yellow: #ffd500;
+$mobile-orange: #ff4800;
+$mobile-purple: #c800ff;
+$mobile-blue: #2900ff;
+$mobile-cyan: #00ebff;
+$mobile-green: #56c600;
+$white-transparent: rgba(255, 255, 255, 0);
+
+// colors for rainbow border
+$gradient-orange: #f08300;
+$gradient-red: #e3000f;
+$gradient-purple: #a72879;
+$gradient-blue: #064496;
+
+.text-blue {
+  color: $mobile-blue;
+}
+.text-green {
+  color: $mobile-green;
+}
+
+.custom-box {
+  border: 0;
+  background-image: -webkit-linear-gradient(
+    1turn,
+    $gradient-orange,
+    $gradient-red 35%,
+    $gradient-purple 80%,
+    $gradient-blue
+  );
+
+  background-image: -o-linear-gradient(
+    1turn,
+    $gradient-orange,
+    $gradient-red 35%,
+    $gradient-purple 80%,
+    $gradient-blue
+  );
+
+  background-image: linear-gradient(
+    1turn,
+    $gradient-orange,
+    $gradient-red 35%,
+    $gradient-purple 80%,
+    $gradient-blue
+  );
+
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    GradientType  = 1,
+    startColorstr = $gradient-orange,
+    endColorstr   = $gradient-blue
+  );
+
+  height: 1%;
+  padding: 3px;
+  box-shadow: 2px 5px 15px 5px #E6E6E6;
+
+  .custom-box__content {
+    background-color: #fff;
+    padding: 15px 20px 20px 25px;
+    p {
+      font-size: 20px;
+    }
+  }
+}
