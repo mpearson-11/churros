@@ -5,4 +5,4 @@ config :churros,
   team_id: System.get_env("CHURROS_TEAM_ID"),
   team_name: System.get_env("CHURROS_TEAM_NAME"),
   organisation: System.get_env("CHURROS_ORG_NAME"),
-  watched_repo: System.get_env("CHURROS_WATCHED_REPO")
+  watched_repos: String.split(System.get_env("CHURROS_WATCHED_REPO"), ",")

@@ -12,7 +12,10 @@ defmodule Churros.WatchedRepoTask do
   end
 
   defp enabled_projects do
-    ["2"]
+    %{
+      "sky-pages" => "2",
+      "polaris-page-producer" => "1"
+    }
   end
 
   def init(_) do
@@ -31,9 +34,10 @@ defmodule Churros.WatchedRepoTask do
   end
 
   defp work_tasks do
-    watched_repo = Application.get_env(:churros, :watched_repo)
-    Enum.each(enabled_projects, fn(project) ->
-      Churros.GithubController.watched_project(watched_repo, project)
+    watched_repos = Application.get_env(:churros, :watched_repos)
+    projects = enabled_projects()
+    Enum.each(watched_repos, fn(repo) ->
+      Churros.GithubController.watched_project(repo, projects[repo])
     end)
   end
 
