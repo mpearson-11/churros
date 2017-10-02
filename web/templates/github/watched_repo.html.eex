@@ -1,14 +1,7 @@
 <div class="o-layout">
   <div class="o-layout__item">
-    <article class="c-tile">
-      <div class="c-tile__content">
-        <div class="c-tile__body">
-          <h1 class="c-heading-bravo u-text-center u-margin-bottom-none">Watching: <%= @project["name"]%></h1>
-        </div>
-      </div>
-    </article>
-  </div>
-  <div class="o-layout__item">
+    <h4 class="c-heading-delta u-text-center u-margin-bottom-small"><%= @project["name"]%></h4>
+    <hr class="c-divider" />
     <div class="o-layout">
     <%= for column <- @project["columns"]["nodes"] do %>
       <%= if length(column["cards"]["nodes"]) >= 1 do %>
@@ -16,7 +9,6 @@
           <article class="c-tile c-tile--collapsable">
             <div class="c-tile__content">
               <div class="c-tile__body">
-                <p class="c-heading-delta u-margin-bottom-small"><%= column["name"] %></p>
                 <div class="o-layout">
                   <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
                 </div>

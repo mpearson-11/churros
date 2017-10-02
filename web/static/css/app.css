@@ -1,4 +1,11 @@
 /* This file is for your main application css. */
+table.scrollit {
+    overflow-y: scroll;
+}
+.flowing {
+    width: 10000px;
+    overflow: auto;
+}
 body {
     background-color: white;
 }

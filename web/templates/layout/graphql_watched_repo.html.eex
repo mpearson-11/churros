@@ -1,8 +1,4 @@
-<div id="live-data" class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large" data-socket-name='<%= @id %>' data-project-watch="true">
-  <div class="o-layout__item u-text-center">
-    <h2 class="c-heading-bravo">Watching repository issues <strong class='u-margin-left-large c-spinner  c-spinner--small' role='progressbar'>Loading…</strong></h2>
-  </div>
-  <hr class="c-divider" />
+<div class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large">
   <div class="o-layout__item">
     <article class="c-tile">
       <div class="c-tile__content">
@@ -12,5 +8,7 @@
         </div>
       </div>
     </article>
+  </div>
+  <div class="o-layout__item" id="live-data" class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large" data-socket-name='<%= @id %>' data-project-watch="true">
   </div>
 </div>

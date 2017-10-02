@@ -3,16 +3,9 @@
     <%= for column <- @columns do %>
       <%= if length(column["cards"]["nodes"]) >= 1 do %>
         <td class="c-table-simple__cell">
-          <article class="c-tile c-tile--collapsable">
-            <div class="c-tile__content">
-              <div class="c-tile__body">
-                <p class="c-text-body u-margin-bottom-large"><%= column["name"] %></p>
-                <div class="o-layout">
-                  <%= render "cards.html", cards: column["cards"]["nodes"] %>
-                </div>
-              </div>
-            </div>
-          </article>
+          <div class="o-layout">
+            <%= render "cards.html", cards: column["cards"]["nodes"] %>
+          </div>
         </td>
       <%= end %>
     <%= end %>

@@ -126,6 +126,7 @@ defmodule Churros.GithubChannel do
   def handle_in("github:watch-repo", params, socket) do
     data = process(params, :project)
     team_id = Application.get_env(:churros, :team_id)
+    IO.inspect(data)
     team = Churros.Github.MainController.organisation_team_members(team_id, @client)
     html = Phoenix.View.render_to_string(Churros.GithubView, "watched_repo.html", project: data, team: team)
     broadcast!(socket, process(params)["ack"], %{ html: html})
