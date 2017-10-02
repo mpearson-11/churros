@@ -11,7 +11,7 @@ defmodule Churros.GithubBoardTasks do
     GenServer.start_link(__MODULE__, 0)
   end
   defp enabled_boards do
-    ["14", "21", "23"]
+    ["27", "26", "25", "24", "22", "14", "10"]
   end
 
   def init(_) do
