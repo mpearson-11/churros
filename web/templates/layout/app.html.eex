@@ -14,8 +14,16 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
-    <%= render @view_module, @view_template, assigns %>
+  <body class="polaris">
+    <main class="mast-u-height-main">
+      <div class="polaris-main">
+        <div>
+          <div class="c-tile__container">
+            <%= render @view_module, @view_template, assigns %>
+          </div>
+        </div>
+      </div>
+    </main>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

@@ -5,16 +5,10 @@
     <div class="o-layout">
     <%= for column <- @project["columns"]["nodes"] do %>
       <%= if length(column["cards"]["nodes"]) >= 1 do %>
-        <div class="o-layout__item u-width-1/3"
-          <article class="c-tile c-tile--collapsable">
-            <div class="c-tile__content">
-              <div class="c-tile__body">
-                <div class="o-layout">
-                  <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
-                </div>
-              </div>
-            </div>
-          </article>
+        <div class="o-layout__item u-width-1/3">
+          <div class="o-layout">
+            <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
+          </div>
         </div>
       <%= end %>
     <%= end %>

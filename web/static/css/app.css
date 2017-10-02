@@ -6,9 +6,6 @@ table.scrollit {
     width: 10000px;
     overflow: auto;
 }
-body {
-    background-color: white;
-}
 .loading-spinner {
     border: 5px solid #f3f3f3; /* Light grey */
     border-top: 5px solid #3498db; /* Blue */
@@ -53,4 +50,9 @@ body {
     font-size: 13pt;
     color: darkblue;
     padding-top: 8px;
+}
+.p-2 {
+    float:left;
+    margin: 4px;
+    overflow: auto;
 }
