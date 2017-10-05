@@ -1,10 +1,8 @@
 /* This file is for your main application css. */
-table.scrollit {
-    overflow-y: scroll;
-}
-.flowing {
-    width: 10000px;
-    overflow: auto;
+
+.overflow {
+    overflow-x: scroll;
+    display: inline-block;
 }
 .loading-spinner {
     border: 5px solid #f3f3f3; /* Light grey */

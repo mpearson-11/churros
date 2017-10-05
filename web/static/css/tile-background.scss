@@ -1,3 +1,8 @@
+// -------------------------
+// TILE_BACKGROUND.SCSS
+//---------------------------
+
+
 $mobile-pink: #ff2ce9;
 $mobile-red: #dc0000;
 $mobile-yellow: #ffd500;
@@ -16,9 +21,15 @@ $gradient-blue: #064496;
 
 .text-blue {
   color: $mobile-blue;
+  font-weight: bold;
 }
 .text-green {
   color: $mobile-green;
+  font-weight: bold;
+}
+.text-red {
+  color: $mobile-red;
+  font-weight: bold;
 }
 
 .custom-box {

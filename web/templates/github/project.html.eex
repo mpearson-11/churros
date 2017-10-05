@@ -1,5 +1,5 @@
 <div class="o-layout">
-  <div class="o-layout__item">
+  <div class="o-layout__item u-text-center">
     <article class="c-tile">
       <div class="c-tile__content">
         <div class="c-tile__body">
@@ -11,7 +11,7 @@
   <div class="o-layout__item">
     <%= render "assignees.html", assignees: filter_assignees(@project) %>
   </div>
-  <div class="o-layout__item">
+  <div class="o-layout__item overflow">
     <%= render "columns.html", columns: @project["columns"]["nodes"] %>
   </div>
 </div>

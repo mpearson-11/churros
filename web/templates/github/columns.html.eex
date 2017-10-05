@@ -2,7 +2,7 @@
   <tr class="c-table-simple__row">
     <%= for column <- @columns do %>
       <%= if length(column["cards"]["nodes"]) >= 1 do %>
-        <td class="c-table-simple__cell">
+        <td class="c-table-simple__cell" style="width:50px;">
           <div class="o-layout">
             <%= render "cards.html", cards: column["cards"]["nodes"] %>
           </div>
