@@ -10,6 +10,20 @@
             <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
           </div>
         </div>
+      <%= else %>
+        <div class="o-layout__item u-width-1/3">
+          <div class="o-layout">
+            <div class="o-layout__item">
+              <article class="c-tile">
+                <div class="c-tile__content">
+                  <div class="c-tile__body">
+                    <p class="c-text-lead text-blue">EMPTY COLUMN</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       <%= end %>
     <%= end %>
   </div>
