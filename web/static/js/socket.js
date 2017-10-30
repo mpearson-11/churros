@@ -61,14 +61,7 @@ const hasProject = (body, liveData) => {
 
 const activateWatchedCard = (cardElement) => {
   const card = $(cardElement);
-  setInterval(() => {
-    const className = card.attr("class");
-    if (className.indexOf('custom-box') === -1) {
-      card.addClass('custom-box');
-    } else {
-      card.removeClass('custom-box');
-    }
-  }, 750);
+  card.addClass('custom-box');
 };
 
 const loadWatchedData = () => {
