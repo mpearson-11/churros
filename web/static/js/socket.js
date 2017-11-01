@@ -12,10 +12,10 @@ let socket = new Socket("/socket", { params: { token: window.userToken } })
 var options = {
   background: '#fefefe',
   density: 'medium',
-  speed: 'medium',
-  interactive: true,
+  speed: 'fast',
+  interactive: false,
   mixedSizes: true,
-  boidColours: ["#34495e", "#e74c3c", '#2ecc71', '#9b59b6', '#f1c40f', '#1abc9c']
+  boidColours: ["#0072c9", "#ff2744", '#73add8', '#4a4a4a', '#299934']
 };
 
 const hashCode = str => {
@@ -63,29 +63,31 @@ const hasProject = (body, liveData) => {
   const socketName = liveData.data("socket-name");
 
   if (body.number && body.team_name) {
-      return socketName === `${body.type}-${body.team_name}-${body.number}`;
+      return socketName === [
+        body.type,
+        body.team_name,
+        body.number
+      ].join('-');
   } else {
     return false;
   }
 };
 
-const activateWatchedCard = (cardElement) => {
-  const card = $(cardElement);
-  card.addClass('custom-box');
+const generateBoidElement = (element) => {
+  new BoidsCanvas(element, options);
+  $($(element).children()[0]).addClass('transparent-child');
 };
 
 const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
 
-  const items = $(".boids-canvas").each((index, selectedElement) => {
-    new BoidsCanvas(selectedElement, options);
-  })
+  $(".boids-canvas").each((index, elem) => generateBoidElement(elem));
 
   if (elements.length) {
     elements.each((index, selectedElement) => {
       if ($(selectedElement).data("socket-card-activated") === true) {
-        activateWatchedCard(selectedElement);
+        $(selectedElement).addClass('custom-box');
       }
     });
   }
@@ -102,10 +104,10 @@ GithubChannel.on("message", ({ body }) => {
 
     GithubChannel.on(ack, payload => {
       liveData.html(payload.html);
+      
+      //Activated watched projects
       if ($("[data-project-watch]").length > 0) {
-        setTimeout(() => {
-            loadWatchedData();
-        }, 250);
+        setTimeout(() => { loadWatchedData(); }, 250);
       }
     });
   }
