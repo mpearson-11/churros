@@ -5,7 +5,7 @@
 // and connect at the socket path in "lib/my_app/endpoint.ex":
 import { Socket } from "phoenix"
 import client from 'github-graphql-client';
-require('boids-canvas/boids-canvas');
+import BoidsCanvas from './boids-canvas';
 
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
