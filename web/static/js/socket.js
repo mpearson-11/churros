@@ -73,12 +73,11 @@ const hasProject = (body, liveData) => {
   }
 };
 
-let boids = {};
-
 const generateBoidElement = (element, index) => {
-  boids = {};
-  boids['boid-' + index] = new BoidsCanvas(element, options);
-  $($(element).children()[0]).addClass('transparent-child');
+  if (!boids['boid-' + index]) {
+    boids['boid-' + index] = new BoidsCanvas(element, options);
+    $($(element).children()[0]).addClass('transparent-child');
+  }
 };
 
 const loadWatchedData = () => {
