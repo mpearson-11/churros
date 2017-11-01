@@ -13,7 +13,7 @@
       <%= else %>
         <div class="o-layout__item u-width-1/3">
           <div class="o-layout">
-            <div class="o-layout__item boids-canvas">
+            <div class="o-layout__item" id="boids-canvas">
             </div>
           </div>
         </div>
@@ -21,16 +21,3 @@
     <%= end %>
   </div>
 </div>
-
- <script type="text/javascript">
-  var options = {
-    background: '#ecf0f1',
-    density: 'medium',
-    speed: 'medium',
-    interactive: true,
-    mixedSizes: true,
-    boidColours: ["#34495e", "#e74c3c", '#2ecc71', '#9b59b6', '#f1c40f', '#1abc9c']
-  };
-  var canvasDiv = document.getElementByClassName('boids-canvas');
-  var boidsCanvas = new BoidsCanvas(canvasDiv, options);
-</script>

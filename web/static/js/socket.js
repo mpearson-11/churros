@@ -9,6 +9,15 @@ import BoidsCanvas from 'boids-canvas/boids-canvas';
 
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
+var options = {
+  background: '#ecf0f1',
+  density: 'medium',
+  speed: 'medium',
+  interactive: true,
+  mixedSizes: true,
+  boidColours: ["#34495e", "#e74c3c", '#2ecc71', '#9b59b6', '#f1c40f', '#1abc9c']
+};
+
 const hashCode = str => {
   var hash = 0, i, chr;
   if (str.length === 0) return hash;
@@ -68,6 +77,10 @@ const activateWatchedCard = (cardElement) => {
 const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
+
+  const canvasDiv = document.getElementById('boids-canvas');
+  const boidsCanvas = new BoidsCanvas(canvasDiv, options);
+
   if (elements.length) {
     elements.each((index, selectedElement) => {
       if ($(selectedElement).data("socket-card-activated") === true) {
