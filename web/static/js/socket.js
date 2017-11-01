@@ -78,8 +78,9 @@ const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
 
-  const canvasDiv = document.getElementById('boids-canvas');
-  const boidsCanvas = new BoidsCanvas(canvasDiv, options);
+  const items = $(".boids-canvas").each((index, selectedElement) => {
+    new BoidsCanvas(selectedElement, options);
+  })
 
   if (elements.length) {
     elements.each((index, selectedElement) => {

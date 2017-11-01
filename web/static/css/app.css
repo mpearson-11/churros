@@ -1,4 +1,7 @@
 /* This file is for your main application css. */
+.boids-canvas {
+    height: 900px !important;
+}
 
 .overflow {
     overflow-x: scroll;
