@@ -73,8 +73,11 @@ const hasProject = (body, liveData) => {
   }
 };
 
-const generateBoidElement = (element) => {
-  new BoidsCanvas(element, options);
+let boids = {};
+
+const generateBoidElement = (element, index) => {
+  boids = {};
+  boids['boid-' + index] = new BoidsCanvas(element, options);
   $($(element).children()[0]).addClass('transparent-child');
 };
 
@@ -82,7 +85,7 @@ const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
 
-  $(".boids-canvas").each((index, elem) => generateBoidElement(elem));
+  $(".boids-canvas").each((index, elem) => generateBoidElement(elem, index));
 
   if (elements.length) {
     elements.each((index, selectedElement) => {
