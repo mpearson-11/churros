@@ -5,6 +5,7 @@
 // and connect at the socket path in "lib/my_app/endpoint.ex":
 import { Socket } from "phoenix"
 import client from 'github-graphql-client';
+import BoidsCanvas from './boids';
 
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
@@ -111,4 +112,4 @@ GithubChannel.join()
   .receive("ok", resp => { console.log('socket connected.')})
   .receive("error", resp => { console.log("unable to join.") })
 
-export default socket
+export default socket;
