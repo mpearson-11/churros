@@ -10,7 +10,7 @@ import BoidsCanvas from './boids-canvas';
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
 var options = {
-  background: '#ecf0f1',
+  background: '#fefefe',
   density: 'medium',
   speed: 'medium',
   interactive: true,
