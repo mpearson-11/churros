@@ -31,7 +31,7 @@ defmodule Churros.GithubView do
     data || []
   end
   def assignee0(data) do
-    asignee_nodes = filter_card(card)
+    asignee_nodes = filter_card(data)
 
     if length(asignee_nodes) >= 0 do
       Enum.at(asignee_nodes, 0)["login"]
