@@ -73,6 +73,8 @@ const hasProject = (body, liveData) => {
   }
 };
 
+const boids = {};
+
 const generateBoidElement = (element, index) => {
   if (!boids['boid-' + index]) {
     boids['boid-' + index] = new BoidsCanvas(element, options);
