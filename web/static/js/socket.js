@@ -73,20 +73,21 @@ const hasProject = (body, liveData) => {
   }
 };
 
-const boids = {};
+let boids = {};
 
 const generateBoidElement = (element, index) => {
-  if (!boids['boid-' + index]) {
-    boids['boid-' + index] = new BoidsCanvas(element, options);
-    $($(element).children()[0]).addClass('transparent-child');
-  }
+  boids = {};
+  boids['boid-' + index] = new BoidsCanvas(element, options);
+  $($(element).children()[0]).addClass('transparent-child');
 };
 
 const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
 
-  $(".boids-canvas").each((index, elem) => generateBoidElement(elem, index));
+  $(".boids-canvas").each((index, elem) => {
+    generateBoidElement(elem, index)
+  });
 
   if (elements.length) {
     elements.each((index, selectedElement) => {
