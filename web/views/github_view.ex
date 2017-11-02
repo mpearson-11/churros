@@ -30,6 +30,14 @@ defmodule Churros.GithubView do
   def nil_condition(data) do
     data || []
   end
+  def assignee0(data) do
+    if length(assignees(data)["nodes"]) >= 0 do
+      [first, rest] = assignees(data)["nodes"]
+      first["login"]
+    else
+      ""
+    end
+  end
 
   def filter_card(card) do
     if card != nil && Map.has_key?(card, "content") do
