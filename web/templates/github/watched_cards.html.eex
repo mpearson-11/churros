@@ -7,7 +7,7 @@
             <%= if card |> has_note? != nil do %>
               <p class="c-text-body u-margin-all-none u-padding-all-none"><%= card |> note %></p>
             <%= else %>
-              <p class="c-text-body u-text-bold u-margin-bottom-small text-green"><%= card |> content |> number %>: <%= card |> content |> assignee0 %></p>
+              <p class="c-text-body u-text-bold u-margin-bottom-small text-green"><%= card |> content |> number %>: <%= card |> assignee0 %></p>
               <p class="c-text-lead text-blue"><%= card |> content |> title %></p>
             <%= end %>
             </p>

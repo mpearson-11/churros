@@ -31,9 +31,10 @@ defmodule Churros.GithubView do
     data || []
   end
   def assignee0(data) do
-    if length(assignees(data)["nodes"]) >= 0 do
-      [first, rest] = assignees(data)["nodes"]
-      first["login"]
+    asignee_nodes = filter_card(card)
+
+    if length(asignee_nodes) >= 0 do
+      Enum.at(asignee_nodes, 0)["login"]
     else
       ""
     end
