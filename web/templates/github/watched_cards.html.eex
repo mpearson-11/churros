@@ -1,13 +1,21 @@
 <%= for {card, index} <- @cards do %>
   <%= if Map.has_key?(card, "content") do %>
     <div class="o-layout__item">
-      <article class="c-tile" data-socket-card-activated='<%= has_team_member(card, @team) %>' data-socket-card-index='<%= index %>' id='card-<%= card |> content |> number %>'>
+      <article class="c-tile"
+        data-socket-card-activated='<%= has_team_member(card, @members) %>'
+        data-socket-card-index='<%= index %>' id='<%= card_id(card) %>'>
+       
         <div class="c-tile__content">
           <div class="c-tile__body">
             <%= if card |> has_note? != nil do %>
-              <p class="c-text-body u-margin-all-none u-padding-all-none"><%= card |> note %></p>
+              <p class="c-text-smallprint u-margin-all-none u-padding-all-none">
+                <%= card |> note %>
+              </p>
             <%= else %>
-              <p class="c-text-body u-text-bold u-margin-bottom-small text-green"><%= card |> content |> number %>: <%= card |> assignee0 %></p>
+              <p class="c-text-body u-text-bold u-margin-bottom-small">
+                <span class="text-green"><%= card |> content |> number %>:</span>
+                <span class="text-red"><%= card |> assignee0 %></span>
+              </p>
               <p class="c-text-lead text-blue"><%= card |> content |> title %></p>
             <%= end %>
             </p>

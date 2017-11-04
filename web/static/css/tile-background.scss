@@ -32,29 +32,22 @@ $gradient-blue: #064496;
   font-weight: bold;
 }
 
-.custom-box {
-  border: 0;
+.custom-box-animated {
   background-image: -webkit-linear-gradient(
     1turn,
-    $gradient-orange,
-    $gradient-red 35%,
-    $gradient-purple 80%,
+    $mobile-blue 65%,
     $gradient-blue
   );
 
   background-image: -o-linear-gradient(
     1turn,
-    $gradient-orange,
-    $gradient-red 35%,
-    $gradient-purple 80%,
+    $mobile-blue 65%,
     $gradient-blue
   );
 
   background-image: linear-gradient(
     1turn,
-    $gradient-orange,
-    $gradient-red 35%,
-    $gradient-purple 80%,
+    $mobile-blue 65%,
     $gradient-blue
   );
 
@@ -63,10 +56,13 @@ $gradient-blue: #064496;
     startColorstr = $gradient-orange,
     endColorstr   = $gradient-blue
   );
+}
 
+.custom-box {
+  border: 0;
   height: 1%;
   padding: 3px;
-  box-shadow: 2px 5px 15px 5px #E6E6E6;
+  box-shadow: 0px 0px 10px 10px white;
 
   .custom-box__content {
     background-color: #fff;

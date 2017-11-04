@@ -15,7 +15,7 @@ var options = {
   speed: 'fast',
   interactive: false,
   mixedSizes: true,
-  boidColours: ["#0072c9", "#ff2744", '#73add8', '#4a4a4a', '#299934']
+  boidColours: ["#ecf0f1", "#f0f3f4", '#f7f9f9', '#d6eaf8']
 };
 
 const hashCode = str => {
@@ -81,9 +81,18 @@ const generateBoidElement = (element, index) => {
   $($(element).children()[0]).addClass('transparent-child');
 };
 
+const acivateCustomBox = (element, selection) => {
+  if (selection) {
+    $(element).addClass("custom-box-animated")
+  } else {
+    $(element).removeClass("custom-box-animated")
+  }
+};
+
 const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
+  let selection = false;
 
   $(".boids-canvas").each((index, elem) => {
     generateBoidElement(elem, index)
@@ -93,6 +102,10 @@ const loadWatchedData = () => {
     elements.each((index, selectedElement) => {
       if ($(selectedElement).data("socket-card-activated") === true) {
         $(selectedElement).addClass('custom-box');
+        setInterval(() => {
+          selection = !selection;
+          acivateCustomBox(selectedElement, selection);
+        }, 500);
       }
     });
   }
@@ -112,7 +125,8 @@ GithubChannel.on("message", ({ body }) => {
       
       //Activated watched projects
       if ($("[data-project-watch]").length > 0) {
-        setTimeout(() => { loadWatchedData(); }, 250);
+        $("#project-name").html(payload.projectName);
+        setTimeout(() => { loadWatchedData(); }, 50);
       }
     });
   }

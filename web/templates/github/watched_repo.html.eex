@@ -1,13 +1,11 @@
 <div class="o-layout">
   <div class="o-layout__item">
-    <h4 class="c-heading-delta u-text-center u-margin-bottom-small"><%= @project["name"]%></h4>
-    <hr class="c-divider" />
     <div class="o-layout">
-    <%= for column <- @project["columns"]["nodes"] do %>
-      <%= if length(column["cards"]["nodes"]) >= 1 do %>
+    <%= for column <- @project |> columns |> nodes do %>
+      <%= if column |> cards |> nodes |> length >= 1 do %>
         <div class="o-layout__item u-width-1/3">
           <div class="o-layout">
-            <%= render "watched_cards.html", cards: Enum.with_index(column["cards"]["nodes"]), team: @team %>
+            <%= render "watched_cards.html", cards: (column |> cards_with_index), members: @members %>
           </div>
         </div>
       <%= else %>

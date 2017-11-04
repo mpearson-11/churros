@@ -1,5 +1,24 @@
 defmodule Churros.GithubView do
   use Churros.Web, :view
+
+  defp card_number(number) do
+    "card-#{number}"
+  end
+
+  def card_id(card) do
+    card
+    |> content
+    |> number
+    |> card_number
+  end
+
+  def cards_with_index(column) do
+    column
+    |> cards
+    |> nodes
+    |> Enum.with_index
+  end
+
   def has_note?(data) do
     data["note"] || nil
   end
@@ -82,14 +101,25 @@ defmodule Churros.GithubView do
     end)
   end
 
-  def has_team_member(card, team) do
+  defp socket_boolean(data) do
+    len = length(data) > 0
+    len && "true" || "false"
+  end
+
+  def find_members_in(card, team) do
     assignees = filter_card(card)
-    has_member = length(Enum.filter(team, fn(member) -> 
+
+    Enum.filter(team, fn(member) -> 
       Enum.find(assignees, fn(assignee) -> 
         member["login"] == assignee["login"]
       end) || nil
-    end)) > 0
-    has_member && "true" || "false"
+    end)
+  end
+
+  def has_team_member(card, team) do
+    card 
+    |> find_members_in(team)
+    |> socket_boolean
   end
 
   def filter_assignees(project) do
