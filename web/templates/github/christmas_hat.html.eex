@@ -1,0 +1,1 @@
+<img class="hat" src="<%= static_path(@conn, "/images/christmas-hat.png") %>" />

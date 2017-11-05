@@ -3,13 +3,17 @@
     <article class="c-tile">
       <div class="c-tile__content">
         <div class="c-tile__body">
-          <h1 id="project-name" class="c-heading-alpha">Loading Project....</h3>
+          <h1 id="project-name" class="c-heading-bravo">Loading Project....</h3>
           <h2 class="c-heading-delta u-margin-bottom-none">Repo: <%= @repo %></h2>
           <h3 class="c-text-body">Number: <%= @number %></h3>
+          <img src="/images/santa-claus.gif" class="santa" />
         </div>
       </div>
     </article>
   </div>
-  <div class="o-layout__item" id="live-data" class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large" data-socket-name='<%= @id %>' data-project-watch="true">
-  </div>
+  <div
+    id="live-data"
+    class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large"
+    data-socket-name='<%= @id %>'
+    data-project-watch="true"></div>
 </div>

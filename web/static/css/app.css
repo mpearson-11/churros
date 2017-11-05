@@ -1,3 +1,27 @@
+.hat {
+    float: left;
+    width: 60px;
+    top: -20px;
+    left: -25px;
+    position: fixed;
+
+    -ms-transform: rotate(290deg); /* IE 9 */
+    -webkit-transform: rotate(290deg); /* Chrome, Safari, Opera */
+    transform: rotate(290deg);
+}
+
+.santa {
+    float: right;
+    width: 280px;
+    top: -50px;
+    right: -20px;
+    position: fixed;
+}
+
+.hat.disabled {
+    display: none;
+}
+
 .transparent-child {
     background: transparent !important;
 }

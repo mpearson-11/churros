@@ -64,6 +64,10 @@ $gradient-blue: #064496;
   padding: 3px;
   box-shadow: 0px 0px 10px 10px white;
 
+  .hat.disabled {
+      display: block;
+  }
+
   .custom-box__content {
     background-color: #fff;
     padding: 15px 20px 20px 25px;
