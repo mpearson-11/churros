@@ -13,7 +13,7 @@
   </div>
   <div
     id="live-data"
-    class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large"
+    class="o-layout u-margin-left-large u-margin-right-large u-margin-top-large snow"
     data-socket-name='<%= @id %>'
     data-project-watch="true"></div>
 </div>
