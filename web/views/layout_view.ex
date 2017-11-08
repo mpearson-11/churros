@@ -7,7 +7,7 @@ defmodule Churros.LayoutView do
   end
 
   def html_background(conn) do
-    image_path =  static_path(conn, "/images/image-2.jpg")
+    image_path =  static_path(conn, "/images/image-2.png")
     css(image_path)
   end
 end
