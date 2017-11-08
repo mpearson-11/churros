@@ -9,15 +9,6 @@ import BoidsCanvas from './boids-canvas';
 
 let socket = new Socket("/socket", { params: { token: window.userToken } })
 
-var options = {
-  background: '#fefefe',
-  density: 'medium',
-  speed: 'fast',
-  interactive: false,
-  mixedSizes: true,
-  boidColours: ["#ecf0f1", "#f0f3f4", '#f7f9f9', '#d6eaf8']
-};
-
 const hashCode = str => {
   var hash = 0, i, chr;
   if (str.length === 0) return hash;
@@ -73,14 +64,6 @@ const hasProject = (body, liveData) => {
   }
 };
 
-let boids = {};
-
-const generateBoidElement = (element, index) => {
-  boids = {};
-  boids['boid-' + index] = new BoidsCanvas(element, options);
-  $($(element).children()[0]).addClass('transparent-child');
-};
-
 const acivateCustomBox = (element, selection) => {
   if (selection) {
     $(element).addClass("custom-box-animated")
@@ -93,10 +76,6 @@ const loadWatchedData = () => {
   const liveData = $("#live-data");
   const elements = $("[data-socket-card-activated]");
   let selection = false;
-
-  $(".boids-canvas").each((index, elem) => {
-    generateBoidElement(elem, index)
-  });
 
   if (elements.length) {
     elements.each((index, selectedElement) => {

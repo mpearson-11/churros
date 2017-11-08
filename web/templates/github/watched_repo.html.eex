@@ -11,7 +11,7 @@
       <%= else %>
         <div class="o-layout__item u-width-1/3">
           <div class="o-layout">
-            <div class="o-layout__item boids-canvas u-text-center">
+            <div class="o-layout__item snow">
             </div>
           </div>
         </div>
