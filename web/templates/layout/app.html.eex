@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="<%= html_background(@conn) %>">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
     <main class="mast-u-height-main">
       <div class="polaris-main">
         <div>
-          <div class="c-tile__container snow">
+          <div class="c-tile__container">
             <%= render @view_module, @view_template, assigns %>
           </div>
         </div>

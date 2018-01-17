@@ -6,7 +6,6 @@
           <h1 id="project-name" class="c-heading-bravo">Loading Project....</h3>
           <h2 class="c-heading-delta u-margin-bottom-none">Repo: <%= @repo %></h2>
           <h3 class="c-text-body">Number: <%= @number %></h3>
-          <img src="/images/santa-claus.gif" class="santa" />
         </div>
       </div>
     </article>
