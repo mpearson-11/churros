@@ -13,9 +13,9 @@
               </p>
             <%= else %>
               <p class="c-text-body u-text-bold u-margin-bottom-small">
-                <span class="text-green"><%= card |> content |> number %>:</span>
+                <span class="text-green"><%= card |> content |> number %>: in train: <%= index %></span>
                 <span class="text-red"><%= card |> assignee0 %></span>
-                <img class='hat disabled' src='/images/christmas-hat.png ' />
+                <img class='hat disabled' src='/images/christmas-hat.png '/>
               </p>
               <p class="c-text-lead text-blue"><%= card |> content |> title %></p>
             <%= end %>
