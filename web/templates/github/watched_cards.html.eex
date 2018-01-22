@@ -14,11 +14,13 @@
             <% else %>
               <p class="c-text-body u-text-bold u-margin-bottom-small">
                 <span class="text-green"><%= card |> content |> number %>
-                <span class="text-blue">|| train number: <%= index %></span>
-                <span class="text-red">|| <%= card |> assignee0 %></span>
+                <span class="text-red"><%= card |> assignee0 %></span>
                 <img class='hat disabled' src='/images/christmas-hat.png '/>
               </p>
-              <p class="c-text-lead text-blue"><%= card |> content |> title %></p>
+              <p class="c-text-lead text-blue">
+                <span class="text-blue">Train: <%= index %></span>
+                <%= card |> content |> title %>
+              </p>
             <%= end %>
             </p>
           </div>
