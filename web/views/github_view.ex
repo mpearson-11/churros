@@ -88,6 +88,18 @@ defmodule Churros.GithubView do
     end
   end
 
+  def assignee_img0(data) do
+    asignee_nodes = filter_card(data)
+
+    if length(asignee_nodes) >= 0 do
+      Enum.at(asignee_nodes, 0)["avatarUrl"]
+    else
+      ""
+    end
+  end
+
+  assignee_img0
+
   def filter_card(card) do
     if card != nil && Map.has_key?(card, "content") do
       card
