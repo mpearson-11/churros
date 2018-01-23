@@ -3,7 +3,7 @@
     <%= render "watched_card.html", card: @card, members: @members, index: card_index %>
   <%= else %>
     <%= if Map.has_key?(card, "content") and @name != "Queue" do %>
-      <%= render "watched_card.html", card: @card, members: @members, index: card_index %>
+      <%= render "watched_card.html", card: card, members: @members, index: card_index %>
     <%= end %>
   <%= end %>
 <%= end %>
