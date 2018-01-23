@@ -19,7 +19,8 @@
               </p>
               <p class="c-text-lead text-blue">
                 <%= card |> content |> title %>
-                <span class="text-blue">Train: <%= index %></span>
+                <hr />
+                <span class="text-red">Train: <%= index %></span>
               </p>
             <%= end %>
             </p>
