@@ -8,7 +8,9 @@
             <p class="c-text-body u-text-bold u-margin-bottom-small">
                 <span class="text-green"><%= @card |> content |> number %></span>
                 <span class="text-red"><%= @card |> assignee0 %></span>
-                <img class="hat" src="<%= @card |> assignee_img0 %>" />
+                    <%= if has_team_member(@card, @members) do %>
+                        <img class="hat" src="<%= @card |> assignee_img0 %>" />
+                    <%= end %>
                 <p class="c-text-lead text-blue">
                     <%= if @train_index != nil do %>
                         <span class="text-red u-text-smallprint"><%= @train_index %></span>
