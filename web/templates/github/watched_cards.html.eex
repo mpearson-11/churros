@@ -1,9 +1,17 @@
 <%= for {card, card_index} <- @cards do %>
   <%= if Map.has_key?(card, "content") and has_team_member(card, @members) and @name == "Queue" do %>
-    <%= render "watched_card.html", card: card, members: @members, index: card_index %>
+    <div class="o-layout__item">
+      <article class="c-tile" data-socket-card-activated='<%= has_team_member(card, @members) %>' data-socket-card-index='<%= card_index %>' id='<%= card_id(card) %>'>
+        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: nil %>
+      </article>
+    </div>
   <%= else %>
     <%= if Map.has_key?(card, "content") and @name != "Queue" do %>
-      <%= render "watched_card.html", card: card, members: @members, index: card_index %>
+    <div class="o-layout__item">
+      <article class="c-tile">
+        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: which_number(card_index + 1) %>
+      </article>
+    </div>
     <%= end %>
   <%= end %>
 <%= end %>
