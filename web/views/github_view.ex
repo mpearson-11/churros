@@ -1,6 +1,24 @@
 defmodule Churros.GithubView do
   use Churros.Web, :view
 
+  defp mod(x,y) when x > 0, do: rem(x, y);
+  defp mod(x,y) when x < 0, do: rem(x, y) + y;
+  defp mod(0,_y), do: 0
+
+  def which_number(number) do
+    if number == 1 do
+      "1st"
+    else
+      case mod(number, 10) do
+        0 -> "#{number}th"
+        1 -> "#{number}st"
+        2 -> "#{number}nd"
+        3 -> "#{number}rd"
+        _ -> "#{number}th"
+      end
+    end
+  end
+
   defp card_number(number) do
     "card-#{number}"
   end
