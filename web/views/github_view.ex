@@ -121,7 +121,7 @@ defmodule Churros.GithubView do
 
   defp socket_boolean(data) do
     len = length(data) > 0
-    len && "true" || "false"
+    len && true || false
   end
 
   def find_members_in(card, team) do
