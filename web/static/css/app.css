@@ -5,6 +5,7 @@
     left: 480px;
     position: fixed;
     z-index: 500;
+    border-radius: 2px;
 }
 
 .santa {
