@@ -9,11 +9,11 @@
                 <span class="text-green"><%= @card |> content |> number %></span>
                 <span class="text-red"><%= @card |> assignee0 %></span>
                 <img class="hat" src="<%= @card |> assignee_img0 %>" />
-                <p class="c-text-lead text-blue u-margin-bottom-large">
+                <p class="c-text-lead text-blue">
                     <%= if @train_index != nil do %>
                         <span class="text-red u-text-smallprint"><%= @train_index %></span>
                     <%= end %>
-                    <hr class="u-margin-top-large" />
+                    <hr />
                     <%= @card |> content |> title %>
                 </p>
             </p>
