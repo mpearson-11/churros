@@ -1,11 +1,11 @@
 .hat {
     float: right;
-    width: 60px;
+    width: 80px;
     top: 10px;
     left: 480px;
     position: fixed;
     z-index: 500;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .santa {
