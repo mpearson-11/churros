@@ -1,8 +1,8 @@
 .hat {
     float: right;
-    width: 30px;
+    width: 50px;
     top: 10px;
-    left: 405px;
+    left: 360px;
     position: fixed;
     z-index: 500;
 }
