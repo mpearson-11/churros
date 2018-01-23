@@ -12,8 +12,8 @@
                 <p class="c-text-lead text-blue">
                     <%= if @train_index != nil do %>
                         <span class="text-red u-text-smallprint"><%= @train_index %></span>
-                        <hr />
                     <%= end %>
+                    <hr />
                     <%= @card |> content |> title %>
                 </p>
             </p>
