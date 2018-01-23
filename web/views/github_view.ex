@@ -98,8 +98,6 @@ defmodule Churros.GithubView do
     end
   end
 
-  assignee_img0
-
   def filter_card(card) do
     if card != nil && Map.has_key?(card, "content") do
       card
