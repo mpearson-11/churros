@@ -10,7 +10,7 @@
                     <p class="c-text-body u-text-bold u-margin-bottom-small">
                         <span class="text-green"><%= @card |> content |> number %></span>
                         <span class="text-red"><%= @card |> assignee0 %></span>
-                        <img class="hat disabled" src="<%= @card |> assignee_img0 %>" />
+                        <img class="hat" src="<%= @card |> assignee_img0 %>" />
                         <p class="c-text-lead text-blue">
                             <span class="text-red u-text-smallprint"><%= which_number(@index + 1) %></span>
                             <hr />
