@@ -1,5 +1,5 @@
 <%= for {card, index} <- @cards do %>
-  <%= if Map.has_key?(card, "content") do %>
+  <%= if Map.has_key?(card, "content") and has_team_member(card, @members) do %>
     <div class="o-layout__item">
       <article class="c-tile"
         data-socket-card-activated='<%= has_team_member(card, @members) %>'
