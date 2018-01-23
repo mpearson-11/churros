@@ -18,8 +18,8 @@
                 <img class='hat disabled' src='/images/christmas-hat.png '/>
               </p>
               <p class="c-text-lead text-blue">
-                <span class="text-blue">Train: <%= index %></span>
                 <%= card |> content |> title %>
+                <span class="text-blue">Train: <%= index %></span>
               </p>
             <%= end %>
             </p>
