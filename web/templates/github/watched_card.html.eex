@@ -1,5 +1,5 @@
 <div class="o-layout__item">
-    <article class="c-tile" data-socket-card-activated='<%= has_team_member(@card, @members) %>' data-socket-card-index='<%= @index %>' id='<%= card_id(@card) %>'>
+    <article class="c-tile c-tile--square" data-socket-card-activated='<%= has_team_member(@card, @members) %>' data-socket-card-index='<%= @index %>' id='<%= card_id(@card) %>'>
         <div class="c-tile__content">
             <div class="c-tile__media">
                 <img class="c-tile__poster" src="<%= @card |> assignee_img0 %>" />
