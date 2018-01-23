@@ -37,6 +37,16 @@ defmodule Churros.GithubView do
     |> Enum.with_index
   end
 
+  def cards_name(column) do
+    column
+    |> cards
+    |> name
+  end
+
+  def name(data) do
+    data["name"] || nil
+  end
+
   def has_note?(data) do
     data["note"] || nil
   end
