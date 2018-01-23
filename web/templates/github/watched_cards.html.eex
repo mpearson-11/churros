@@ -1,5 +1,5 @@
 <%= for {card, index} <- @cards do %>
-  <% if Map.has_key?(card, "content") and has_team_member(card, @members) and card["name"] == "Queue" do %>
+  <%= if Map.has_key?(card, "content") and has_team_member(card, @members) and card["name"] == "Queue" do %>
     <div class="o-layout__item">
       <article class="c-tile"
         data-socket-card-activated='<%= has_team_member(card, @members) %>'
@@ -28,7 +28,7 @@
         </div>
       </article>
     </div>
-  <% else %>
+  <%= else %>
     <%= if Map.has_key?(card, "content") and card["name"] != "Queue" do %>
     <div class="o-layout__item">
       <article class="c-tile"
@@ -58,7 +58,7 @@
         </div>
       </article>
     </div>
-    <% end %>
-  <% end %>
+    <%= end %>
+  <%= end %>
 <%= end %>
 
