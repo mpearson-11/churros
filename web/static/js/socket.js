@@ -101,7 +101,6 @@ GithubChannel.on("message", ({ body }) => {
       //Activated watched projects
       if ($("[data-project-watch]").length > 0) {
         $("#project-name").html(payload.projectName);
-        setTimeout(() => { loadWatchedData(); }, 50);
       }
     });
   }
