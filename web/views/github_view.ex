@@ -39,7 +39,6 @@ defmodule Churros.GithubView do
 
   def cards_name(column) do
     output = column
-    |> cards
     |> name
     IO.inspect(output)
     output
