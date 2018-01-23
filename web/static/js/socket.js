@@ -81,10 +81,6 @@ const loadWatchedData = () => {
     elements.each((index, selectedElement) => {
       if ($(selectedElement).data("socket-card-activated") === true) {
         $(selectedElement).addClass('custom-box');
-        setInterval(() => {
-          selection = !selection;
-          acivateCustomBox(selectedElement, selection);
-        }, 500);
       }
     });
   }
