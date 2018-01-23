@@ -2,14 +2,14 @@
   <%= if Map.has_key?(card, "content") and has_team_member(card, @members) and @name == "Queue" do %>
     <div class="o-layout__item">
       <article class="c-tile" data-socket-card-activated='<%= has_team_member(card, @members) %>' data-socket-card-index='<%= card_index %>' id='<%= card_id(card) %>'>
-        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: nil %>
+        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: which_number(card_index + 1) %>
       </article>
     </div>
   <%= else %>
     <%= if Map.has_key?(card, "content") and @name != "Queue" do %>
     <div class="o-layout__item">
       <article class="c-tile">
-        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: which_number(card_index + 1) %>
+        <%= render "watched_card.html", card: card, members: @members, index: card_index, train_index: nil %>
       </article>
     </div>
     <%= end %>
