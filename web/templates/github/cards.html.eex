@@ -5,7 +5,7 @@
         <div class="c-tile__content">
           <div class="c-tile__body">
             <%= if card |> has_note? != nil do %>
-              <p class="c-text-body u-margin-all-none u-padding-all-none"><%= card |> note %></p>
+              <p class="c-text-body u-margin-all-none u-padding-all-none"><%= Earmark.as_html!(card |> note) %></p>
             <%= else %>
               <p class="c-text-body u-text-bold u-margin-bottom-small text-red"><%= card |> content |> number %></p>
               <p class="c-text-lead text-blue bold"><%= card |> content |> title %></p>
